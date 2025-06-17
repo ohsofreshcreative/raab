@@ -1280,31 +1280,6 @@
       ],
       "fontSizes": [
         {
-          "name": "shadow-2xs",
-          "slug": "shadow-2xs",
-          "size": "0px 1px 0px #00000026"
-        },
-        {
-          "name": "shadow-xs",
-          "slug": "shadow-xs",
-          "size": "0px 1px 1px #0003"
-        },
-        {
-          "name": "shadow-sm",
-          "slug": "shadow-sm",
-          "size": "0px 1px 0px #00000013,0px 1px 1px #00000013,0px 2px 2px #00000013"
-        },
-        {
-          "name": "shadow-md",
-          "slug": "shadow-md",
-          "size": "0px 1px 1px #0000001a,0px 1px 2px #0000001a,0px 2px 4px #0000001a"
-        },
-        {
-          "name": "shadow-lg",
-          "slug": "shadow-lg",
-          "size": "0px 1px 2px #0000001a,0px 3px 2px #0000001a,0px 4px 8px #0000001a"
-        },
-        {
           "name": "xs",
           "slug": "xs",
           "size": ".75rem"

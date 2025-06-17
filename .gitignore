@@ -5,7 +5,7 @@ public/hot
 *.log
 
 # === Composer ===
-vendor/
+
 
 # === Laravel/Sage storage (jeśli dotyczy) ===
 storage/

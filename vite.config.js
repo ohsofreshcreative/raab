@@ -5,16 +5,16 @@ import { wordpressPlugin, wordpressThemeJson } from '@roots/vite-plugin'
 
 export default defineConfig({
   server: {
-    host: 'shadowcontrol.local', // 🔁 <-- zmiana z 'localhost'
+    host: 'raab.local', // 🔁 <-- zmiana z 'localhost'
     port: 5173,
     strictPort: true,
     cors: true,
-    origin: 'http://shadowcontrol.local',
-	origin: 'http://shadowcontrol.local:5173',
+    origin: 'http://raab.local',
+	origin: 'http://raab.local:5173',
 
     hmr: {
       protocol: 'ws',
-      host: 'shadowcontrol.local', // 🔁 <-- tu też!
+      host: 'raab.local', // 🔁 <-- tu też!
       port: 5173,
     },
   },
