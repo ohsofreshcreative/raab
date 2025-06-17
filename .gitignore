@@ -1,0 +1,38 @@
+# === Node.js & Vite ===
+node_modules/
+public/build/
+public/hot
+*.log
+
+# === Composer ===
+vendor/
+
+# === Laravel/Sage storage (jeśli dotyczy) ===
+storage/
+storage/logs/
+storage/framework/
+
+# === LocalWP (ważne!) ===
+.local
+.localwp
+run/
+*.sock
+*.pid
+*.pid.lock
+
+# === Deployment pliki pomocnicze ===
+deploy/
+
+# === Env ===
+.env
+.env.*
+
+# === System & edytory ===
+.DS_Store
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# === Git ===
+.gitkeep

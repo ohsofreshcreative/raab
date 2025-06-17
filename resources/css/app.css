@@ -1,0 +1,10 @@
+@import "tailwindcss" theme(static);
+
+@source "../views/";
+@source "../../app/";
+
+@import "../css/variables.scss";
+
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
