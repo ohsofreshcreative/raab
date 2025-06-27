@@ -168,3 +168,4 @@ add_action('widgets_init', function () {
     'id'   => 'sidebar-footer-4',
   ] + $defaultConfig);
 });
+

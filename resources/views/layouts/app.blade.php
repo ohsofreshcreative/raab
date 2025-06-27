@@ -7,6 +7,9 @@
 	@php(do_action('get_header'))
 	@php(wp_head())
 
+	{{-- Adobe Fonts --}}
+	<link rel="stylesheet" href="https://use.typekit.net/gxc6evb.css">
+
 	@vite(['resources/css/app.css', 'resources/js/app.js'])
 
 

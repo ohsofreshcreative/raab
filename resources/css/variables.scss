@@ -86,45 +86,47 @@ body {
   background-color: var(--bg);
 }
 
+/*--- !ROOT ---*/
+
 :root {
   --body: #1b1b1b !important;
-  --primary: #52f9ad;
-  --p-hover: #37a673;
-  --p-100: #dcfeef;
-  --p-200: #c5fde4;
-  --p-300: #a8fcd6;
-  --p-400: #8cfbc8;
-  --p-500: #6ffabb;
-  --p-600: #44cf90;
-  --p-700: #37a673;
-  --p-800: #297c56;
-  --p-900: #1b533a;
-  --p-dark: #103223;
+  --primary: #e30613;
+  --p-hover: #bd0510;
+  --p-100: #f9cdd0;
+  --p-200: #f6acb0;
+  --p-300: #f18289;
+  --p-400: #ec5962;
+  --p-500: #e8303a;
+  --p-600: #bd0510;
+  --p-700: #97040d;
+  --p-800: #72030a;
+  --p-900: #4c0206;
+  --p-dark: #2d0104;
 
-  --secondary: #292929;
-  --s-hover: #222222;
-  --s-100: #d4d4d4;
-  --s-200: #b8b8b8;
-  --s-300: #949494;
-  --s-400: #707070;
-  --s-500: #4d4d4d;
-  --s-600: #222222;
-  --s-700: #1b1b1b;
-  --s-800: #141414;
-  --s-900: #0e0e0e;
-  --s-dark: #080808;
+  --secondary: #1d1d1b;
+  --s-hover: #12141a;
+  --s-100: #d0d1d2;
+  --s-200: #b1b2b4;
+  --s-300: #8a8b8f;
+  --s-400: #63656a;
+  --s-500: #3c3f44;
+  --s-600: #12141a;
+  --s-700: #0e1015;
+  --s-800: #0b0c10;
+  --s-900: #07080a;
+  --s-dark: #040506;
 
-  --gray: #809fb7;
-  --bg: #f7fffc;
-  --bg-light: #e5fff3;
-  --bg-lighter: #ecfff6;
+  --gray: #63656A;
+  --bg: #fafafa;
+  --bg-light: #F2F2F2;
+  --bg-lighter: #FFF3F3;
 
   --border: var(--p-300);
   --border-light: var(--p-200);
 
-  --header: 'Poppins', sans-serif;
-  --txt: 'Manrope', sans-serif;
-  --btns-font: 'Poppins', sans-serif;
+  --header: 'franklin-gothic-atf', sans-serif;
+  --txt: 'franklin-gothic-atf', sans-serif;
+  --btns-font: 'franklin-gothic-atf', sans-serif;
 
   --smt: 104px;
   --spt: 104px;
@@ -138,10 +140,10 @@ body {
   --img-xxl: 776px;
 
   --section-gap: 40px;
-  --m-title: 8px;
+  --m-title: 16px;
   --m-subtitle: 8px;
   --m-btn: 32px;
-  --m-img: 24px;
+  --m-img: 40px;
   --radius: 32px;
 
   --btns-fontsize: 14px;
@@ -163,7 +165,8 @@ body {
   width: 100%;
 }
 
-.c-main-wide {
+.c-main-wide,
+.wide .c-main {
   max-width: 1456px !important;
   margin: 0 auto;
   padding-left: 24px !important;
@@ -237,9 +240,25 @@ body {
   gap: var(--section-gap);
 }
 
-.section-dark {
-  background: var(--secondary);
-  padding: 56px 0;
+.section-light {
+  background: var(--bg-light);
+  padding: 120px 0;
+}
+
+.section-white {
+  background-color: #fff;
+  padding: var(--smt) 0;
+  border-top: 1px solid var(--border-light);
+}
+
+.section-gray {
+  background-color: #eee;
+  padding: var(--smt) 0;
+}
+
+.section-brand {
+  background: var(--p-hover);
+  padding: var(--smt) 0;
   h1,
   h2,
   h3,
@@ -251,20 +270,30 @@ body {
   strong,
   i,
   ul,
-  ul li {
+  ul li,
+  a {
+    color: #fff !important;
+  }	
+}
+
+.section-dark {
+  background: var(--secondary);
+  padding: var(--smt) 0;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  b,
+  strong,
+  i,
+  ul,
+  ul li,
+  .accordion-label {
     color: #fff !important;
   }
-}
-
-.section-light {
-  background: var(--bg-light);
-  padding: 120px 0;
-}
-
-.section-white {
-  background-color: #fff;
-  padding: var(--smt) 0;
-  border-top: 1px solid var(--border-light);
 }
 
 .m-title {
@@ -332,6 +361,7 @@ h5,
 h6 {
   font-family: var(--header);
   color: var(--body);
+  font-weight: 500;
 }
 
 p.big {
@@ -347,8 +377,8 @@ h1,
 
 h2,
 .text-h2 {
-  font-size: 48px !important;
-  line-height: 4rem;
+  font-size: 42px !important;
+  line-height: 3.2rem;
 }
 
 h3,
@@ -373,6 +403,25 @@ h6,
   font-size: 20px !important;
 }
 
+.__before {
+  color: var(--gray);
+  /*   display: flex;
+  gap:16px; */
+}
+
+.__before::before {
+  content: '';
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.2em;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='42' viewBox='0 0 22 42' fill='none'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M0 0.5L22 21.0402L0 41.5L11.5278 21.1207L0 0.5Z' fill='%23E30613'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: relative;
+  top: 6px;
+}
+
 .text-underline {
   text-decoration: underline;
 }
@@ -394,6 +443,10 @@ h6,
 
 .text-light {
   color: var(--p-300) !important;
+}
+
+.text-gray {
+  color: var(--gray) !important;
 }
 
 .primary {
@@ -450,8 +503,16 @@ h6,
   border: 1px solid var(--border) !important;
 }
 
-.b-border-4 {
-  border: 4px solid var(--border) !important;
+.b-border-b {
+  border-bottom: 1px solid var(--border) !important;
+}
+
+.b-border-l {
+  border-left: 1px solid var(--border) !important;
+}
+
+.b-border-light {
+  border: 1px solid var(--border-light) !important;
 }
 
 .b-shadow {
@@ -604,7 +665,7 @@ h6,
 }
 
 .underline-btn::after {
-  content: url('http://shadowcontrol.local/wp-content/uploads/2025/05/arrow-right.svg');
+  content: url('http://raab.local/wp-content/uploads/2025/06/btn-arrow.svg');
   height: 10px;
   width: 10px;
   margin-left: 8px;
@@ -665,10 +726,25 @@ h6,
   transition: all 0.3s;
   transition-delay: 0s;
   background-color: var(--bg) !important;
+  .contact__btn {
+    background-color: var(--primary);
+    padding: 12px 24px;
+    transition: all 0.2s ease-out;
+    margin-left: auto;
+    a {
+      color: #fff !important;
+    }
+  }
+  .contact__btn:hover {
+    background-color: var(--p-hover);
+    padding: 12px 24px;
+    transition: all 0.2s ease-out;
+  }
 }
 
-.fixed-top .nav-link {
+.fixed-top .nav-link a {
   color: var(--body);
+  font-size: 1rem;
 }
 
 .fixed-top.scrollUp {
@@ -692,6 +768,25 @@ h6,
 
 /*--- !BLOCKS ---*/
 
+/*--- HERO OFFER ---*/
+
+.hero-offer {
+  h2 {
+	color:#FFF;
+	margin-top:-8px;
+	margin-bottom:16px;
+  }
+}
+
+/*--- HERO SECOND ---*/
+
+.hero-second {
+  svg.__shape {
+    filter: blur(50px);
+    opacity: 0.5;
+  }
+}
+
 /*--- HOME ABOUT ---*/
 
 .home-about {
@@ -704,14 +799,33 @@ h6,
 /*--- !TEXT IMAGE ---*/
 
 .text-image {
+  h4:not(:first-of-type) {
+    margin-top: 32px; /* Adjust the margin value as needed */
+  }
   h5 {
     margin-top: 32px;
   }
+  h6 {
+	font-size:18px !important;
+    margin-top: 8px;
+    margin-bottom: 16px;
+  }
+  .__content {
+    p {
+      padding-bottom: 8px;
+    }
+    p:last-child {
+      padding-bottom: 0px;
+    }
+  }
+  b, strong {
+	margin-top:24px;
+  }
   ul {
-    margin-top: 24px;
+    margin-top: 8px;
     li {
       position: relative;
-      padding-left: 1.5em;
+      padding-left: 1em;
       border-bottom: 1px solid var(--border-light);
       width: fit-content;
       margin-bottom: 8px;
@@ -726,35 +840,73 @@ h6,
       content: '';
       position: absolute;
       left: 0;
-      top: 50%;
-      width: 15px;
-      height: 14px;
-      background-image: url('http://shadowcontrol.local/wp-content/uploads/2025/05/check.svg');
+      top: 6px;
+      width: 7px;
+      height: 12px;
+      background-image: url('http://raab.local/wp-content/uploads/2025/06/check.svg');
       background-size: cover;
-      transform: translateY(-50%);
     }
   }
 }
 
-.text-image.colflex {
+/*--- !AREA ---*/
+
+.area {
   .__col {
-    width: 70%;
+    grid-template-columns: 2fr 1fr;
   }
-  .grid {
-    display: flex !important;
-    flex-direction: column;
+  .__img img {
+    object-fit: contain;
+  }
+  ul {
+    margin-top: 24px;
+    li {
+      position: relative;
+      padding-left: 1em;
+      border-bottom: 1px solid var(--border-light);
+      width: fit-content;
+      margin-bottom: 8px;
+      padding-bottom: 8px;
+    }
+    li:last-child {
+      border-bottom: 0;
+      margin-bottom: 0px;
+      padding-bottom: 0px;
+    }
+    li:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 6px;
+      width: 7px;
+      height: 12px;
+      background-image: url('http://raab.local/wp-content/uploads/2025/06/check.svg');
+      background-size: cover;
+    }
   }
 }
 
-.text-image.whyus {
-  margin-top: -104px !important;
-  .__col {
-    align-items: end;
+.iso {
+  img.__bg--first {
+    left: 50%;
+    top: -60px;
   }
-  .__content {
-    width: 80%;
+  img.__bg--second {
+    left: 0%;
+    bottom: 0px;
+    mix-blend-mode: soft-light;
+    opacity: 0.5;
+  }
+}
+
+.offer-about {
+  .__img img {
+    width: 70%;
     margin-left: auto;
-    margin-right: 56px;
+  }
+  h2 {
+    font-size: 36px !important;
+    line-height: 3rem;
   }
 }
 
@@ -829,17 +981,18 @@ h6,
 .__grid {
   display: grid;
   gap: var(--section-gap);
-  .__img {
-    filter: invert(1);
-    width: 72px;
-    height: 72px;
-  }
   .__card {
     transition: all 0.6s ease;
   }
   .__card:hover {
-    background-color: var(--bg-lighter);
+    border: 1px solid var(--primary) !important;
     transition: all 0.6s ease;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    width: 100%;
   }
 
   &.columns-2 {
@@ -886,7 +1039,6 @@ h6,
     display: flex;
     flex-direction: column;
     height: 100%;
-    border-bottom: 16px solid var(--primary);
 
     .__rectangle {
       content: '';
@@ -898,20 +1050,19 @@ h6,
 
     .__img {
       text-align: center;
-      width: 72px;
-      height: 72px;
 
       img {
         max-width: 100%;
         height: auto;
+        width: 100%;
       }
     }
   }
 
   .__arrows {
-    width: max-content;
-    right: 0;
-    top: -80px;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
   }
 
   .swiper-button-next,
@@ -929,59 +1080,34 @@ h6,
     width: 64px;
     height: 64px;
     background-color: var(--primary);
+    transition: all 0.2s ease-out;
+  }
+  .swiper-button-next:hover,
+  .swiper-button-prev:hover {
+    background-color: var(--p-hover);
+    transition: all 0.2s ease-out;
   }
   .swiper-button-next svg,
   .swiper-button-prev svg {
-    width: 14px;
-    height: 12px;
+    width: 20px;
+    height: 20px;
   }
   .swiper-button-next {
     order: 2;
+    position: absolute;
+    right: 0;
   }
   .swiper-button-prev {
     transform: scaleX(-1);
     order: 1;
+    position: absolute;
+    left: 0;
   }
 
   .swiper-button-next:after,
   .swiper-button-prev:after {
     content: '';
   }
-}
-
-/*--- !OFFER SLIDER - ACTIVE CARD ---*/
-
-.offer-swiper .swiper-wrapper .swiper-slide.first-visible-slide {
-  & > .offer-card,
-  & > .__card {
-    background-color: var(--primary);
-    border-bottom: 16px solid var(--secondary);
-  }
-  & h5 {
-    color: var(--secondary);
-  }
-
-  & .__txt {
-    color: var(--secondary);
-  }
-
-  & .__rectangle {
-    background-color: var(--secondary);
-  }
-  & .__img {
-    mix-blend-mode: difference;
-    filter: grayscale(1) brightness(80%);
-  }
-  & .underline-btn {
-    color: var(--secondary);
-  }
-  & .underline-btn::after {
-    mix-blend-mode: difference;
-  }
-}
-
-.offer-swiper .swiper-wrapper .swiper-slide {
-  transition: all 0.3s ease;
 }
 
 /*--- !THREE COLUMNS ---*/
@@ -1100,10 +1226,9 @@ input[type='checkbox'] {
   border-bottom: 1px solid var(--primary) !important;
 }
 
-/*--- !FAQ & !SPECIFICATION ---*/
+/*--- !FAQ ---*/
 
-.faq,
-.specification {
+.faq {
   /*Section used for centering process*/
   input.acc-check {
     position: absolute !important;
@@ -1121,15 +1246,11 @@ input[type='checkbox'] {
     width: 100%;
     overflow: hidden;
     margin-bottom: 16px !important;
-    border-bottom: 1px solid var(--border);
   }
   .accordion-label {
     padding: 8px 0;
     margin-bottom: 0px !important;
-    font-weight: 700;
     cursor: pointer;
-    font-family: var(--header);
-    font-size: 18px;
     color: var(--body);
     display: flex;
     justify-content: space-between;
@@ -1138,13 +1259,16 @@ input[type='checkbox'] {
   .accordion-label:hover {
   }
   .accordion-label::after {
-    content: url('http://shadowcontrol.local/wp-content/uploads/2025/06/plus.svg');
+    content: url('http://raab.local/wp-content/uploads/2025/06/plus.svg');
     text-align: right;
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
     float: right;
     transform: scale(0.9);
-    height: 32px;
+    height: 24px;
+    width: 24px;
+    border-radius: 2px;
+    background-color: var(--gray);
   }
   .accordion-content {
     max-height: 0;
@@ -1161,10 +1285,21 @@ input[type='checkbox'] {
     list-style-type: disc;
     padding-left: 16px;
   }
-  input:checked + .accordion-label {
+  input:checked {
+    border: 1px solid var(--gray);
   }
   input:checked + .accordion-label::after {
-    content: url('http://shadowcontrol.local/wp-content/uploads/2025/06/minus.svg');
+    content: url('http://raab.local/wp-content/uploads/2025/06/minus.svg');
+  }
+  .accordion:has(input:checked) {
+    border: 1px solid var(--gray);
+    padding-top: 24px;
+    padding-bottom: 24px;
+    background: linear-gradient(
+      180deg,
+      rgba(60, 63, 68, 0.2) 0%,
+      rgba(60, 63, 68, 0) 50%
+    );
   }
   input:checked ~ .accordion-content {
     max-height: 400px;
@@ -1288,6 +1423,16 @@ input[type='checkbox'] {
 
 /*--- !BLOG ---*/
 
+.toc ul li {
+    border-left: 2px solid #ccc;
+    padding-left: 24px; 
+    margin-bottom: 16px; 
+  }
+
+  .toc ul li.active {
+    border-left-color: red;
+  }
+
 /*--- !SINGLE ---*/
 
 .single-post {
@@ -1338,7 +1483,28 @@ input[type='checkbox'] {
 
 /*--- !IMAGE ---*/
 .image.tmp {
-  margin-top:40px !important;
+  margin-top: 40px !important;
+}
+
+/*--- !CTA - STOPKA ---*/
+.cta-bottom {
+  .__before::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='42' viewBox='0 0 22 42' fill='none'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M0 0.5L22 21.0402L0 41.5L11.5278 21.1207L0 0.5Z' fill='%23f18289'/%3E%3C/svg%3E");
+  }
+
+  .__phone::before {
+    content: url('http://raab.local/wp-content/uploads/2025/06/phone.svg');
+    margin-right: 16px;
+    position: relative;
+    top: 4px;
+  }
+
+  .__mail::before {
+    content: url('http://raab.local/wp-content/uploads/2025/06/mail.svg');
+    margin-right: 16px;
+    position: relative;
+    top: 4px;
+  }
 }
 
 /*--- !FOOTER ---*/
@@ -1349,15 +1515,10 @@ input[type='checkbox'] {
 
 .footer {
   .__widgets {
-    grid-template-columns: 1fr 1fr 2fr;
-    .footer_widget.nav_menu-5 {
-      ul {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-      }
-    }
+    grid-template-columns: repeat(4, 1fr);
+
     @media (max-width: 1024px) {
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
       .footer_widget.nav_menu-5 {
         ul {
           display: grid;

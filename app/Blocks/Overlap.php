@@ -5,65 +5,73 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
-class Cards extends Block
+class Overlap extends Block
 {
-	public $name = 'Kafelki z obrazem';
-	public $description = 'cards';
-	public $slug = 'cards';
+	public $name = 'Treść oraz duże kafelki';
+	public $description = 'overlap';
+	public $slug = 'overlap';
 	public $category = 'formatting';
-	public $icon = 'ellipsis';
-	public $keywords = ['cards', 'kafelki'];
+	public $icon = 'align-wide';
+	public $keywords = ['tresc', 'zdjecie', 'overlap'];
 	public $mode = 'edit';
 	public $supports = [
 		'align' => false,
 		'mode' => false,
 		'jsx' => true,
+		'anchor' => true,
+		'customClassName' => true,
 	];
 
 	public function fields()
 	{
-		$cards = new FieldsBuilder('cards');
+		$overlap = new FieldsBuilder('overlap');
 
-		$cards
-			->setLocation('block', '==', 'acf/cards') // ważne!
+		$overlap
+			->setLocation('block', '==', 'acf/overlap') // ważne!
 			->addText('block-title', [
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
 			->addAccordion('accordion1', [
-				'label' => 'Kafelki',
+				'label' => 'Treść oraz duże kafelki',
 				'open' => false,
 				'multi_expand' => true,
 			])
-			/*--- FIELDS ---*/
-			->addTab('Treści', ['placement' => 'top'])
-			->addGroup('tiles', ['label' => ''])
-
+			/*--- GROUP ---*/
+			->addTab('Elementy', ['placement' => 'top'])
+			->addGroup('g_overlap', ['label' => ''])
+			
 			->addText('title', ['label' => 'Tytuł'])
+			->addWysiwyg('content', [
+				'label' => 'Treść',
+				'tabs' => 'all', // 'visual', 'text', 'all'
+				'toolbar' => 'full', // 'basic', 'full'
+				'media_upload' => true,
+			])
+			->endGroup()
 
-			->addRepeater('repeater', [
+			->addTab('Kafelki', ['placement' => 'top'])
+			->addRepeater('r_overlap', [
 				'label' => 'Kafelki',
 				'layout' => 'table', // 'row', 'block', albo 'table'
 				'min' => 1,
-				'max' => 4,
 				'button_label' => 'Dodaj kafelek'
 			])
-			->addImage('card_image', [
+			->addImage('r_image', [
 				'label' => 'Obraz',
 				'return_format' => 'array', // lub 'url', lub 'id'
 				'preview_size' => 'medium',
 			])
-			->addText('card_title', [
+			->addText('r_header', [
 				'label' => 'Nagłówek',
 			])
-			->addTextarea('card_txt', [
-				'label' => 'Opis',
-				'rows' => 4,
-				'new_lines' => 'br',
+			->addWysiwyg('r_txt', [
+				'label' => 'Treść',
+				'tabs' => 'all', // 'visual', 'text', 'all'
+				'toolbar' => 'full', // 'basic', 'full'
+				'media_upload' => true,
 			])
 			->endRepeater()
-
-			->endGroup()
 
 			/*--- USTAWIENIA BLOKU ---*/
 
@@ -98,7 +106,7 @@ class Cards extends Block
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
 			])
-			->addTrueFalse('graybg', [
+			->addTrueFalse('greybg', [
 				'label' => 'Szare tło',
 				'ui' => 1,
 				'ui_on_text' => 'Tak',
@@ -115,23 +123,36 @@ class Cards extends Block
 				'ui' => 1,
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
+			])
+			->addImage('bgimage', [
+				'label' => 'Obraz w tle #1',
+				'return_format' => 'array',
+				'preview_size' => 'medium',
+			])
+			->addImage('bgimage2', [
+				'label' => 'Obraz w tle #2',
+				'return_format' => 'array',
+				'preview_size' => 'medium',
 			]);
 
-		return $cards;
+		return $overlap;
 	}
 
 	public function with()
 	{
 		return [
-			'tiles' => get_field('tiles'),
+			'g_overlap' => get_field('g_overlap'),
+			'r_overlap' => get_field('r_overlap'),
 			'flip' => get_field('flip'),
 			'wide' => get_field('wide'),
 			'nomt' => get_field('nomt'),
 			'gap' => get_field('gap'),
 			'lightbg' => get_field('lightbg'),
-			'graybg' => get_field('graybg'),
+			'greybg' => get_field('greybg'),
 			'whitebg' => get_field('whitebg'),
 			'brandbg' => get_field('brandbg'),
+			'bgimage' => get_field('bgimage'),
+			'bgimage2' => get_field('bgimage2'),
 		];
 	}
 }

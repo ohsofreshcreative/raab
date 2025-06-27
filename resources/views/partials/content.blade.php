@@ -1,16 +1,16 @@
 <article @php(post_class())>
 	<header>
 		@if(has_post_thumbnail())
-		<a class="m-img" href="{{ get_permalink() }}">
+		<a class="" href="{{ get_permalink() }}">
 			{!! get_the_post_thumbnail(null, 'large', ['class' => 'featured-image img-xs']) !!}
 		</a>
 		@endif
 
-		<h2 class="entry-title text-h5">
+		<h6 class="entry-title text-h5 mt-6">
 			<a href="{{ get_permalink() }}">
 				{!! $title !!}
 			</a>
-		</h2>
+		</h6>
 
 		<!--  @include('partials.entry-meta') -->
 	</header>

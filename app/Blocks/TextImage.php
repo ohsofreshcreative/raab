@@ -8,12 +8,12 @@ use StoutLogic\AcfBuilder\FieldsBuilder;
 class TextImage extends Block
 {
 	public $name = 'Treść oraz zdjęcie';
-	public $description = 'Treść oraz zdjęcie';
+	public $description = 'text-image';
 	public $slug = 'text-image';
 	public $category = 'formatting';
 	public $icon = 'align-pull-left';
 	public $keywords = ['tresc', 'zdjecie'];
-	public $mode = 'edit'; 
+	public $mode = 'edit';
 	public $supports = [
 		'align' => false,
 		'mode' => false,
@@ -67,8 +67,32 @@ class TextImage extends Block
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
 			])
+			->addTrueFalse('wide', [
+				'label' => 'Szeroka kolumna',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
+			->addTrueFalse('nomt', [
+				'label' => 'Usunięcie marginesu górnego',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
+			->addTrueFalse('gap', [
+				'label' => 'Większy odstęp',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
 			->addTrueFalse('lightbg', [
 				'label' => 'Jasne tło',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
+			->addTrueFalse('graybg', [
+				'label' => 'Szare tło',
 				'ui' => 1,
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
@@ -79,11 +103,21 @@ class TextImage extends Block
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
 			])
-			->addTrueFalse('nomt', [
-				'label' => 'Usunięcie marginesu górnego',
+			->addTrueFalse('brandbg', [
+				'label' => 'Tło marki',
 				'ui' => 1,
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
+			])
+			->addImage('bgimage', [
+				'label' => 'Obraz w tle #1',
+				'return_format' => 'array',
+				'preview_size' => 'medium',
+			])
+			->addImage('bgimage2', [
+				'label' => 'Obraz w tle #2',
+				'return_format' => 'array',
+				'preview_size' => 'medium',
 			]);
 
 		return $text_image;
@@ -94,9 +128,15 @@ class TextImage extends Block
 		return [
 			'textimg' => get_field('textimg'),
 			'flip' => get_field('flip'),
-			'lightbg' => get_field('lightbg'),
-			'whitebg' => get_field('whitebg'),
+			'wide' => get_field('wide'),
 			'nomt' => get_field('nomt'),
+			'gap' => get_field('gap'),
+			'lightbg' => get_field('lightbg'),
+			'graybg' => get_field('graybg'),
+			'whitebg' => get_field('whitebg'),
+			'brandbg' => get_field('brandbg'),
+			'bgimage' => get_field('bgimage'),
+			'bgimage2' => get_field('bgimage2'),
 		];
 	}
 }

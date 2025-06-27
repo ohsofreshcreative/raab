@@ -5,14 +5,14 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
-class Cards extends Block
+class Cases extends Block
 {
-	public $name = 'Kafelki z obrazem';
-	public $description = 'cards';
-	public $slug = 'cards';
+	public $name = 'Realizacje - Treść';
+	public $description = 'cases';
+	public $slug = 'cases';
 	public $category = 'formatting';
 	public $icon = 'ellipsis';
-	public $keywords = ['cards', 'kafelki'];
+	public $keywords = ['cases', 'kafelki'];
 	public $mode = 'edit';
 	public $supports = [
 		'align' => false,
@@ -22,26 +22,24 @@ class Cards extends Block
 
 	public function fields()
 	{
-		$cards = new FieldsBuilder('cards');
+		$cases = new FieldsBuilder('cases');
 
-		$cards
-			->setLocation('block', '==', 'acf/cards') // ważne!
+		$cases
+			->setLocation('block', '==', 'acf/cases') // ważne!
 			->addText('block-title', [
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
 			->addAccordion('accordion1', [
-				'label' => 'Kafelki',
+				'label' => 'Realizacje - Treść',
 				'open' => false,
 				'multi_expand' => true,
 			])
 			/*--- FIELDS ---*/
 			->addTab('Treści', ['placement' => 'top'])
-			->addGroup('tiles', ['label' => ''])
+			->addGroup('g_cases', ['label' => ''])
 
-			->addText('title', ['label' => 'Tytuł'])
-
-			->addRepeater('repeater', [
+			->addRepeater('r_cases', [
 				'label' => 'Kafelki',
 				'layout' => 'table', // 'row', 'block', albo 'table'
 				'min' => 1,
@@ -52,14 +50,27 @@ class Cards extends Block
 				'label' => 'Obraz',
 				'return_format' => 'array', // lub 'url', lub 'id'
 				'preview_size' => 'medium',
+				'wrapper' => [
+					'width' => 15, 
+				],
+			])
+			->addText('card_subtitle', [
+				'label' => 'Podtytuł wstępny',
+				'wrapper' => [
+					'width' => 15, 
+				],
 			])
 			->addText('card_title', [
 				'label' => 'Nagłówek',
 			])
-			->addTextarea('card_txt', [
-				'label' => 'Opis',
-				'rows' => 4,
-				'new_lines' => 'br',
+			->addWysiwyg('card_txt', [
+				'label' => 'Treść',
+				'tabs' => 'all', // 'visual', 'text', 'all'
+				'toolbar' => 'full', // 'basic', 'full'
+				'media_upload' => true,
+				'wrapper' => [
+					'width' => 40, 
+				],
 			])
 			->endRepeater()
 
@@ -74,8 +85,8 @@ class Cards extends Block
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
 			])
-			->addTrueFalse('wide', [
-				'label' => 'Szeroka kolumna',
+			->addTrueFalse('lightbg', [
+				'label' => 'Jasne tło',
 				'ui' => 1,
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
@@ -85,53 +96,18 @@ class Cards extends Block
 				'ui' => 1,
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
-			])
-			->addTrueFalse('gap', [
-				'label' => 'Większy odstęp',
-				'ui' => 1,
-				'ui_on_text' => 'Tak',
-				'ui_off_text' => 'Nie',
-			])
-			->addTrueFalse('lightbg', [
-				'label' => 'Jasne tło',
-				'ui' => 1,
-				'ui_on_text' => 'Tak',
-				'ui_off_text' => 'Nie',
-			])
-			->addTrueFalse('graybg', [
-				'label' => 'Szare tło',
-				'ui' => 1,
-				'ui_on_text' => 'Tak',
-				'ui_off_text' => 'Nie',
-			])
-			->addTrueFalse('whitebg', [
-				'label' => 'Białe tło',
-				'ui' => 1,
-				'ui_on_text' => 'Tak',
-				'ui_off_text' => 'Nie',
-			])
-			->addTrueFalse('brandbg', [
-				'label' => 'Tło marki',
-				'ui' => 1,
-				'ui_on_text' => 'Tak',
-				'ui_off_text' => 'Nie',
 			]);
 
-		return $cards;
+		return $cases;
 	}
 
 	public function with()
 	{
 		return [
-			'tiles' => get_field('tiles'),
+			'g_cases' => get_field('g_cases'),
 			'flip' => get_field('flip'),
-			'wide' => get_field('wide'),
-			'nomt' => get_field('nomt'),
-			'gap' => get_field('gap'),
 			'lightbg' => get_field('lightbg'),
-			'graybg' => get_field('graybg'),
-			'whitebg' => get_field('whitebg'),
-			'brandbg' => get_field('brandbg'),
+			'nomt' => get_field('nomt'),
 		];
 	}
 }

@@ -5,41 +5,54 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
-class Cards extends Block
+class Team extends Block
 {
-	public $name = 'Kafelki z obrazem';
-	public $description = 'cards';
-	public $slug = 'cards';
+	public $name = 'Nasz zespół';
+	public $description = 'team';
+	public $slug = 'team';
 	public $category = 'formatting';
-	public $icon = 'ellipsis';
-	public $keywords = ['cards', 'kafelki'];
+	public $icon = 'admin-users';
+	public $keywords = ['team', 'nasz', 'zespol', 'kafelki'];
 	public $mode = 'edit';
 	public $supports = [
 		'align' => false,
 		'mode' => false,
 		'jsx' => true,
+		'anchor' => true,
+		'customClassName' => true,
 	];
 
 	public function fields()
 	{
-		$cards = new FieldsBuilder('cards');
+		$team = new FieldsBuilder('team');
 
-		$cards
-			->setLocation('block', '==', 'acf/cards') // ważne!
+		$team
+			->setLocation('block', '==', 'acf/team') // ważne!
 			->addText('block-title', [
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
 			->addAccordion('accordion1', [
-				'label' => 'Kafelki',
+				'label' => 'Nasz zespół',
 				'open' => false,
 				'multi_expand' => true,
 			])
 			/*--- FIELDS ---*/
 			->addTab('Treści', ['placement' => 'top'])
-			->addGroup('tiles', ['label' => ''])
+			->addGroup('g_team', ['label' => ''])
 
 			->addText('title', ['label' => 'Tytuł'])
+			->addWysiwyg('content', [
+				'label' => 'Treść',
+				'tabs' => 'all', // 'visual', 'text', 'all'
+				'toolbar' => 'full', // 'basic', 'full'
+				'media_upload' => true,
+			])
+
+			->endGroup()
+
+			/*--- TAB #2 ---*/
+			->addTab('Kafelki', ['placement' => 'top'])
 
 			->addRepeater('repeater', [
 				'label' => 'Kafelki',
@@ -54,16 +67,16 @@ class Cards extends Block
 				'preview_size' => 'medium',
 			])
 			->addText('card_title', [
-				'label' => 'Nagłówek',
+				'label' => 'Imię i nazwisko',
 			])
-			->addTextarea('card_txt', [
-				'label' => 'Opis',
-				'rows' => 4,
-				'new_lines' => 'br',
+			->addText('card_function', [
+				'label' => 'Stanowisko',
 			])
+			->addText('card_mail', [
+				'label' => 'Adres e-mail',
+			])
+			
 			->endRepeater()
-
-			->endGroup()
 
 			/*--- USTAWIENIA BLOKU ---*/
 
@@ -117,13 +130,14 @@ class Cards extends Block
 				'ui_off_text' => 'Nie',
 			]);
 
-		return $cards;
+		return $team;
 	}
 
 	public function with()
 	{
 		return [
-			'tiles' => get_field('tiles'),
+			'g_team' => get_field('g_team'),
+			'repeater' => get_field('repeater'),
 			'flip' => get_field('flip'),
 			'wide' => get_field('wide'),
 			'nomt' => get_field('nomt'),

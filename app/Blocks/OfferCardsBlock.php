@@ -95,7 +95,15 @@ class OfferCardsBlock extends Block
 				'open' => false,
 				'multi_expand' => true,
 			])
+
+			->addTab('Elementy', ['placement' => 'top'])
 			->addText('title')
+			->addWysiwyg('content', [
+				'label' => 'Treść',
+				'tabs' => 'all',
+				'toolbar' => 'full',
+				'media_upload' => true,
+			])
 			->addSelect('display_type', [
 				'label' => 'Typ wyświetlania',
 				'choices' => [
@@ -123,6 +131,47 @@ class OfferCardsBlock extends Block
 						],
 					],
 				],
+			])
+			
+			/*--- USTAWIENIA BLOKU ---*/
+
+			->addTab('Ustawienia bloku', ['placement' => 'top'])
+			
+			->addTrueFalse('nomt', [
+				'label' => 'Usunięcie marginesu górnego',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
+			->addTrueFalse('gap', [
+				'label' => 'Większy odstęp',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
+			->addTrueFalse('lightbg', [
+				'label' => 'Jasne tło',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
+			->addTrueFalse('graybg', [
+				'label' => 'Szare tło',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
+			->addTrueFalse('whitebg', [
+				'label' => 'Białe tło',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
+			->addTrueFalse('brandbg', [
+				'label' => 'Tło marki',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
 			]);
 
 		return $offerCardsBlock->build();
@@ -135,7 +184,13 @@ class OfferCardsBlock extends Block
 			'display_type' => get_field('display_type'),
 			'columns' => get_field('columns'),
 			'offer_cards' => get_field('offer-cards', 'option'),
-			'title' => get_field('title')
+			'title' => get_field('title'),
+			'content' => get_field('content'),
+			'nomt' => get_field('nomt'),
+			'lightbg' => get_field('lightbg'),
+			'graybg' => get_field('graybg'),
+			'whitebg' => get_field('whitebg'),
+			'brandbg' => get_field('brandbg'),
 		];
 	}
 

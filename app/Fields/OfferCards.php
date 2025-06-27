@@ -42,13 +42,13 @@ class OfferCards extends Field
 				],
 			])
 			->addText('offer_title', [
-				'label' => 'Nagłówek cechy',
+				'label' => 'Nagłówek',
 				'wrapper' => [
 					'width' => '20',
 				],
 			])
 			->addTextarea('offer_description', [
-				'label' => 'Opis cechy',
+				'label' => 'Opis',
 			])
 			->addLink('cta', [
 				'label' => 'Link CTA',

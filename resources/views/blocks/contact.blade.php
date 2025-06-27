@@ -10,8 +10,9 @@ $sectionClass = '';
 				<div class="__txt mt-8">{!! $g_contact_1['txt'] !!}</div>
 				<a class="__phone flex items-center w-max mt-4" href="tel:{{ $g_contact_1['phone'] }}">{{ $g_contact_1['phone'] }}</a>
 				<a class="__mail flex items-center w-max mt-2" href="mailto:{{ $g_contact_1['phone'] }}">{{ $g_contact_1['mail'] }}</a>
+				<div class="__txt mt-8">{!! $g_contact_1['adres'] !!}</div>
+				<div class="__txt mt-8">{!! $g_contact_1['data'] !!}</div>
 			</div>
-			<img class="__img object-cover w-full img-xs" src="{{ $g_contact_1['image']['url'] }}" alt="{{ $g_contact_1['image']['alt'] ?? '' }}">
 		</div>
 		<div class="__form b-border bg-white p-10 ">
 			<h2>{{ $g_contact_2['title'] }}</h2>

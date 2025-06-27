@@ -1,7 +1,7 @@
 <header x-data="{ mobileOpen: false }" class="relative top-0 z-50 bg-white shadow-md masthead fixed-top">
 
 	<!-- Desktop Header -->
-	<div class="items-center justify-between hidden h-full p-4 mx-auto c-main md:flex">
+	<div class="items-center justify-between hidden h-full py-4 px-12 mx-auto md:flex">
 		<a class="brand shrink-0" href="{{ home_url('/') }}">
 			@if ($logo)
 			<img src="{{ $logo['url'] }}" alt="{{ $logo['alt'] ?? 'Logo' }}" class="w-auto">
@@ -10,10 +10,10 @@
 			@endif
 		</a>
 		@if (has_nav_menu('primary_navigation'))
-		<nav class="ml-6 nav-primary" aria-label="{{ wp_get_nav_menu_name('primary_navigation') }}">
+		<nav class="ml-15 nav-primary w-full" aria-label="{{ wp_get_nav_menu_name('primary_navigation') }}">
 			{!! wp_nav_menu([
 			'theme_location' => 'primary_navigation',
-			'menu_class' => 'nav flex gap-x-5 lg:gap-x-8 text-sm font-medium items-center',
+			'menu_class' => 'nav flex gap-x-5 lg:gap-x-8 text-sm font-medium items-center nav-link',
 			'container' => false,
 			'echo' => false,
 			]) !!}

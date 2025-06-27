@@ -5,66 +5,46 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
-class Cards extends Block
+class AreaBlock extends Block
 {
-	public $name = 'Kafelki z obrazem';
-	public $description = 'cards';
-	public $slug = 'cards';
+	public $name = 'Obszar działania';
+	public $description = 'area-block';
+	public $slug = 'area-block'; 
 	public $category = 'formatting';
-	public $icon = 'ellipsis';
-	public $keywords = ['cards', 'kafelki'];
+	public $icon = 'admin-site';
+	public $keywords = ['obszar', 'cards', 'dzialania', 'kafelki'];
 	public $mode = 'edit';
 	public $supports = [
 		'align' => false,
 		'mode' => false,
 		'jsx' => true,
+		'multiple' => true,
+		'anchor' => true,
+		'customClassName' => true,
 	];
 
+	/**
+	 * The block field group.
+	 *
+	 * @return array
+	 */
 	public function fields()
 	{
-		$cards = new FieldsBuilder('cards');
+		$areaBlock = new FieldsBuilder('area_block');
 
-		$cards
-			->setLocation('block', '==', 'acf/cards') // ważne!
+		$areaBlock
 			->addText('block-title', [
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
 			->addAccordion('accordion1', [
-				'label' => 'Kafelki',
+				'label' => 'Obszar działania',
 				'open' => false,
 				'multi_expand' => true,
 			])
-			/*--- FIELDS ---*/
-			->addTab('Treści', ['placement' => 'top'])
-			->addGroup('tiles', ['label' => ''])
-
-			->addText('title', ['label' => 'Tytuł'])
-
-			->addRepeater('repeater', [
-				'label' => 'Kafelki',
-				'layout' => 'table', // 'row', 'block', albo 'table'
-				'min' => 1,
-				'max' => 4,
-				'button_label' => 'Dodaj kafelek'
-			])
-			->addImage('card_image', [
-				'label' => 'Obraz',
-				'return_format' => 'array', // lub 'url', lub 'id'
-				'preview_size' => 'medium',
-			])
-			->addText('card_title', [
-				'label' => 'Nagłówek',
-			])
-			->addTextarea('card_txt', [
-				'label' => 'Opis',
-				'rows' => 4,
-				'new_lines' => 'br',
-			])
-			->endRepeater()
-
-			->endGroup()
-
+			->addTab('Elementy', ['placement' => 'top'])
+			->addMessage('Edycja', 'Edytujemy klikajac w menu panelu administratora pole "Obszar działania".')
+			
 			/*--- USTAWIENIA BLOKU ---*/
 
 			->addTab('Ustawienia bloku', ['placement' => 'top'])
@@ -116,14 +96,20 @@ class Cards extends Block
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
 			]);
+			
 
-		return $cards;
+		return $areaBlock->build();
 	}
 
+	/**
+	 * Data to be passed to the block before rendering.
+	 *
+	 * @return array
+	 */
 	public function with()
 	{
 		return [
-			'tiles' => get_field('tiles'),
+			'g_area' => get_field('g_area', 'option'),
 			'flip' => get_field('flip'),
 			'wide' => get_field('wide'),
 			'nomt' => get_field('nomt'),

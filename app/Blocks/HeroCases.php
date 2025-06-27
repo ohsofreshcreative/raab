@@ -5,11 +5,11 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
-class Hero extends Block
+class HeroCases extends Block
 {
-	public $name = 'Sekcja Hero';
-	public $description = 'Sekcja Hero';
-	public $slug = 'hero';
+	public $name = 'Sekcja Hero - Realizacje';
+	public $description = 'hero-cases';
+	public $slug = 'hero-cases';
 	public $category = 'formatting';
 	public $icon = 'align-full-width';
 	public $keywords = ['tresc', 'zdjecie'];
@@ -22,37 +22,27 @@ class Hero extends Block
 
 	public function fields()
 	{
-		$hero = new FieldsBuilder('hero');
+		$hero_cases = new FieldsBuilder('hero-cases');
 
-		$hero
-			->setLocation('block', '==', 'acf/hero') // ważne!
+		$hero_cases
+			->setLocation('block', '==', 'acf/hero-cases') // ważne!
 			->addText('block-title', [
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
 			->addAccordion('accordion1', [
-				'label' => 'Hero',
+				'label' => 'Hero - Realizacje',
 				'open' => false,
 				'multi_expand' => true,
 			])
 			->addTab('Treść', ['placement' => 'top']) 
-			->addGroup('hero', ['label' => 'Hero'])
+			->addGroup('g_herocases', ['label' => 'Hero - Pojedyncza oferta'])
 			->addImage('image', [
 				'label' => 'Obraz',
 				'return_format' => 'array', // lub 'url', lub 'id'
 				'preview_size' => 'medium',
 			])
 			->addText('title', ['label' => 'Tytuł'])
-			->addWysiwyg('content', [
-				'label' => 'Treść',
-				'tabs' => 'all', // 'visual', 'text', 'all'
-				'toolbar' => 'full', // 'basic', 'full'
-				'media_upload' => true,
-			])
-			->addLink('cta', [
-				'label' => 'Przycisk',
-				'return_format' => 'array',
-			])
 
 			->endGroup()
 
@@ -63,30 +53,16 @@ class Hero extends Block
 				'ui' => 1,
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
-			])
-			->addTrueFalse('gfx_top', [
-				'label' => 'Grafika górna',
-				'ui' => 1,
-				'ui_on_text' => 'Tak',
-				'ui_off_text' => 'Nie',
-			])
-			->addTrueFalse('gfx_bottom', [
-				'label' => 'Grafika dolna',
-				'ui' => 1,
-				'ui_on_text' => 'Tak',
-				'ui_off_text' => 'Nie',
 			]);
 
-		return $hero;
+		return $hero_cases;
 	}
 
 	public function with()
 	{
 		return [
-			'hero' => get_field('hero'),
+			'g_herocases' => get_field('g_herocases'),
 			'flip' => get_field('flip'),
-			'gfx_top' => get_field('gfx_top'),
-			'gfx_bottom' => get_field('gfx_bottom'),
 		];
 	}
 }

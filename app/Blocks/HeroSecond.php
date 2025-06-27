@@ -5,11 +5,11 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
-class HeroOffer extends Block
+class HeroSecond extends Block
 {
-	public $name = 'Sekcja Hero - Oferta';
-	public $description = 'hero-offer';
-	public $slug = 'hero-offer';
+	public $name = 'Sekcja Hero - Alternatywne';
+	public $description = 'hero-second';
+	public $slug = 'hero-second';
 	public $category = 'formatting';
 	public $icon = 'align-full-width';
 	public $keywords = ['tresc', 'zdjecie'];
@@ -22,21 +22,21 @@ class HeroOffer extends Block
 
 	public function fields()
 	{
-		$hero_offer = new FieldsBuilder('hero-offer');
+		$hero_second = new FieldsBuilder('hero-second');
 
-		$hero_offer
-			->setLocation('block', '==', 'acf/hero-offer') // ważne!
+		$hero_second
+			->setLocation('block', '==', 'acf/hero-second') // ważne!
 			->addText('block-title', [
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
 			->addAccordion('accordion1', [
-				'label' => 'Hero',
+				'label' => 'Hero - Alternatywne',
 				'open' => false,
 				'multi_expand' => true,
 			])
 			->addTab('Treść', ['placement' => 'top']) 
-			->addGroup('g_herooffer', ['label' => 'Hero oferta'])
+			->addGroup('g_herosecond', ['label' => 'Hero - Pojedyncza oferta'])
 			->addImage('image', [
 				'label' => 'Obraz',
 				'return_format' => 'array', // lub 'url', lub 'id'
@@ -50,11 +50,7 @@ class HeroOffer extends Block
 				'media_upload' => true,
 			])
 			->addLink('cta', [
-				'label' => 'Przycisk #1',
-				'return_format' => 'array',
-			])
-			->addLink('cta2', [
-				'label' => 'Przycisk #2',
+				'label' => 'Przycisk',
 				'return_format' => 'array',
 			])
 
@@ -81,13 +77,13 @@ class HeroOffer extends Block
 				'ui_off_text' => 'Nie',
 			]);
 
-		return $hero_offer;
+		return $hero_second;
 	}
 
 	public function with()
 	{
 		return [
-			'g_herooffer' => get_field('g_herooffer'),
+			'g_herosecond' => get_field('g_herosecond'),
 			'flip' => get_field('flip'),
 			'gfx_top' => get_field('gfx_top'),
 			'gfx_bottom' => get_field('gfx_bottom'),

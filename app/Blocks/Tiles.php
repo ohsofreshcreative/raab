@@ -82,8 +82,20 @@ class Tiles extends Block
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
 			])
+			->addTrueFalse('wide', [
+				'label' => 'Szeroka kolumna',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
 			->addTrueFalse('lightbg', [
 				'label' => 'Jasne tło',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
+			->addTrueFalse('greybg', [
+				'label' => 'Szare tło',
 				'ui' => 1,
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
@@ -110,7 +122,9 @@ class Tiles extends Block
 			'tiles' => get_field('tiles'),
 			'repeater' => get_field('repeater'),
 			'flip' => get_field('flip'),
+			'wide' => get_field('wide'),
 			'lightbg' => get_field('lightbg'),
+			'greybg' => get_field('greybg'),
 			'whitebg' => get_field('whitebg'),
 			'nomt' => get_field('nomt'),
 		];

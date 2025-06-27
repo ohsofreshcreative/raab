@@ -5,14 +5,14 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
-class Specification extends Block
+class Accordion extends Block
 {
-	public $name = 'Specyfikacja';
-	public $description = 'specification';
-	public $slug = 'specification';
+	public $name = 'Rozwijane panele';
+	public $description = 'accordion';
+	public $slug = 'accordion';
 	public $category = 'formatting';
 	public $icon = 'feedback';
-	public $keywords = ['specification'];
+	public $keywords = ['accordion'];
 	public $mode = 'edit'; 
 	public $supports = [
 		'align' => false,
@@ -24,22 +24,22 @@ class Specification extends Block
 
 	public function fields()
 	{
-		$specification = new FieldsBuilder('specification');
+		$accordion = new FieldsBuilder('accordion');
 
-		$specification
-			->setLocation('block', '==', 'acf/specification') // ważne!
+		$accordion
+			->setLocation('block', '==', 'acf/accordion') // ważne!
 			->addText('block-title', [
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
 			->addAccordion('accordion1', [
-				'label' => 'Specyfikacja',
+				'label' => 'Rozwijane panele',
 				'open' => false,
 				'multi_expand' => true,
 			])
 			/*--- TAB #1 ---*/
 			->addTab('Treść', ['placement' => 'top'])
-			->addGroup('g_specification', ['label' => ''])
+			->addGroup('g_accordion', ['label' => ''])
 			->addText('title', ['label' => 'Tytuł'])
 			->addImage('image', [
 				'label' => 'Obraz',
@@ -58,10 +58,9 @@ class Specification extends Block
 			/*--- TAB #2 ---*/
 			->addTab('Elementy', ['placement' => 'top'])
 			->addRepeater('repeater', [
-				'label' => 'specification',
+				'label' => 'accordion',
 				'layout' => 'table', // 'row', 'block', albo 'table'
 				'min' => 1,
-				'max' => 4,
 				'button_label' => 'Dodaj pytanie'
 			])
 			->addText('title', [
@@ -83,17 +82,33 @@ class Specification extends Block
 				'ui' => 1,
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
+			])
+			
+			->addTrueFalse('darkbg', [
+				'label' => 'Ciemne tło',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
+			
+			->addTrueFalse('bgimage', [
+				'label' => 'Grafika w tle',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
 			]);
 
-		return $specification;
+		return $accordion;
 	}
 
 	public function with()
 	{
 		return [
-			'g_specification' => get_field('g_specification'),
+			'g_accordion' => get_field('g_accordion'),
 			'repeater' => get_field('repeater'),
 			'flip' => get_field('flip'),
+			'darkbg' => get_field('darkbg'),
+			'bgimage' => get_field('bgimage'),
 		];
 	}
 }

@@ -4,6 +4,11 @@ import './menubar.js';
 import './footer-accordion.js';
 import './swiper.js';
 
+/*--- BLOCKS ---*/
+
+import './blocks/cases.js';
+
+
 /*--- GSAP ---*/
 
 import gsap from 'gsap';
@@ -14,7 +19,7 @@ gsap.registerPlugin(ScrollTrigger);
 /*--- SWIPER ---*/
 
 import Swiper from 'swiper';
-import 'swiper/css'; 
+import 'swiper/css';
 
 // Dodatkowe moduły (opcjonalnie)
 import { Navigation, Pagination } from 'swiper/modules';
@@ -134,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const swipers = document.querySelectorAll('.swiper');
 
   if (swipers.length > 0) {
-    swipers.forEach(container => {
+    swipers.forEach((container) => {
       new Swiper(container, {
         slidesPerView: 1,
         spaceBetween: 30,
@@ -156,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const swipers = document.querySelectorAll('.usage-swiper');
 
   if (swipers.length > 0) {
-    swipers.forEach(container => {
+    swipers.forEach((container) => {
       new Swiper(container, {
         slidesPerView: 3,
         spaceBetween: 30,
@@ -174,7 +179,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-
 document.addEventListener('DOMContentLoaded', () => {
   const swipers = document.querySelectorAll('.offer-swiper');
 
@@ -183,7 +187,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const swiper = new Swiper(container, {
         slidesPerView: 3,
         spaceBetween: 32,
-        loop: true, // Włącz zapętlenie
         pagination: {
           el: container.querySelector('.swiper-pagination'),
           clickable: true,
@@ -198,28 +201,132 @@ document.addEventListener('DOMContentLoaded', () => {
           1024: { slidesPerView: 3, spaceBetween: 32 },
         },
         on: {
-          init: function() {
+          init: function () {
             updateFirstVisibleSlide(this, container);
           },
-          slideChange: function() {
+          slideChange: function () {
             updateFirstVisibleSlide(this, container);
-          }
-        }
+          },
+        },
       });
 
       // Helper function to update first visible slide
       function updateFirstVisibleSlide(swiperInstance, swiperContainer) {
         // First, remove the class from all slides within THIS specific swiper only
         const allSlides = swiperContainer.querySelectorAll('.swiper-slide');
-        allSlides.forEach(slide => {
+        allSlides.forEach((slide) => {
           slide.classList.remove('first-visible-slide');
         });
-        
+
         // Then, add the class only to the first visible slide of THIS swiper
         if (swiperInstance.slides[swiperInstance.activeIndex]) {
-          swiperInstance.slides[swiperInstance.activeIndex].classList.add('first-visible-slide');
+          swiperInstance.slides[swiperInstance.activeIndex].classList.add(
+            'first-visible-slide'
+          );
         }
       }
     });
   }
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  const svgs = gsap.utils.toArray('.animated-svg');
+
+  svgs.forEach((svg, index) => {
+    const path = svg.querySelector('path'); // Get the path inside the SVG
+
+    gsap.set(path, {
+      stroke: '#E30613',
+      strokeWidth: 1,
+      fill: 'transparent',
+      strokeDasharray: 2500, // Adjust as needed
+      strokeDashoffset: 2500, // Adjust as needed
+    });
+
+    let delay = 0;
+    if (index === 1) {
+      // Apply delay only to the second SVG
+      delay = 0.2;
+    }
+
+    gsap.to(path, {
+      scrollTrigger: {
+        trigger: svg, // Element, który uruchamia animację
+        start: 'top bottom-=200px', // Kiedy góra elementu dotknie dołu okna
+        once: true, // Animacja uruchomi się tylko raz
+      },
+      delay: delay,
+      duration: 1.5,
+      strokeDashoffset: 0,
+      ease: 'linear',
+      onComplete: () => {
+        gsap.to(path, {
+          duration: 0.7,
+          fill: '#E30613',
+          ease: 'linear',
+        });
+      },
+    });
+  });
+});
+
+/*--- WHITE SVG ANIMATION ---*/
+
+document.addEventListener('DOMContentLoaded', function () {
+  const svgs = gsap.utils.toArray('.white-svg');
+
+  svgs.forEach((svg, index) => {
+    const path = svg.querySelector('path');
+
+    gsap.set(path, {
+      stroke: '#FFF',
+      strokeWidth: 1,
+      fill: 'transparent',
+      strokeDasharray: 2500,
+      strokeDashoffset: 2500,
+    });
+
+    let delay = 0;
+    if (index === 1) {
+      delay = 0.2;
+    }
+
+    gsap.to(path, {
+      scrollTrigger: {
+        trigger: svg, // Element, który uruchamia animację
+        start: 'top bottom-=200px', // Kiedy góra elementu dotknie dołu okna
+        once: true, // Animacja uruchomi się tylko raz
+      },
+      delay: delay,
+      duration: 1.5,
+      strokeDashoffset: 0,
+      ease: 'linear',
+      onComplete: () => {
+        gsap.to(path, {
+          duration: 0.7,
+          fill: '#FFF',
+          ease: 'linear',
+        });
+      },
+    });
+  });
+});
+
+/*--- STICKY CONTAINER ANIMATION ---*/
+
+const tiles = gsap.utils.toArray('.gsap__cards'); // Zmieniamy selektor na sticky-container
+
+tiles.forEach((tile, i) => {
+  gsap.to(tile.querySelector('.gsap__card'), {
+    // Animujemy overlap__card wewnątrz sticky-container
+    scale: 0.8,
+    filter: 'blur(5px)',
+    scrollTrigger: {
+      trigger: tile,
+      start: 'top top', // Kiedy górna krawędź kafelka dotknie górnej krawędzi ekranu
+      end: 'bottom top', // Kiedy dolna krawędź kafelka dotknie górnej krawędzi ekranu
+      scrub: true, // Animacja podąża za przewijaniem
+      markers: false, // Pokaż markery do debugowania
+    },
+  });
 });

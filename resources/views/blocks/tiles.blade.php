@@ -1,7 +1,10 @@
 @php
 $sectionClass = '';
 $sectionClass .= $flip ? ' order-flip' : '';
+$sectionClass .= $wide ? ' wide' : '';
 $sectionClass .= $lightbg ? ' section-light' : '';
+$sectionClass .= $greybg ? ' section-grey' : '';
+$sectionClass .= $whitebg ? ' section-white' : '';
 $sectionClass .= $nomt ? ' !mt-0' : '';
 @endphp
 

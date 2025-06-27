@@ -5,66 +5,47 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
-class Cards extends Block
+class BottomBlock extends Block
 {
-	public $name = 'Kafelki z obrazem';
-	public $description = 'cards';
-	public $slug = 'cards';
+	public $name = 'Wezwanie do działania - Stopka';
+	public $description = 'bottom-block';
+	public $slug = 'bottom-block'; 
 	public $category = 'formatting';
-	public $icon = 'ellipsis';
-	public $keywords = ['cards', 'kafelki'];
+	public $icon = 'email';
+	public $keywords = ['offer', 'cards', 'oferta', 'kafelki'];
 	public $mode = 'edit';
 	public $supports = [
 		'align' => false,
 		'mode' => false,
 		'jsx' => true,
+		'multiple' => true,
+		'anchor' => true,
+		'customClassName' => true,
 	];
 
+	/**
+	 * The block field group.
+	 *
+	 * @return array
+	 */
 	public function fields()
 	{
-		$cards = new FieldsBuilder('cards');
+		$bottomBlock = new FieldsBuilder('bottom_block');
 
-		$cards
-			->setLocation('block', '==', 'acf/cards') // ważne!
+		$bottomBlock
 			->addText('block-title', [
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
 			->addAccordion('accordion1', [
-				'label' => 'Kafelki',
+				'label' => 'Wezwanie do działania - Stopka',
 				'open' => false,
 				'multi_expand' => true,
 			])
-			/*--- FIELDS ---*/
-			->addTab('Treści', ['placement' => 'top'])
-			->addGroup('tiles', ['label' => ''])
-
-			->addText('title', ['label' => 'Tytuł'])
-
-			->addRepeater('repeater', [
-				'label' => 'Kafelki',
-				'layout' => 'table', // 'row', 'block', albo 'table'
-				'min' => 1,
-				'max' => 4,
-				'button_label' => 'Dodaj kafelek'
-			])
-			->addImage('card_image', [
-				'label' => 'Obraz',
-				'return_format' => 'array', // lub 'url', lub 'id'
-				'preview_size' => 'medium',
-			])
-			->addText('card_title', [
-				'label' => 'Nagłówek',
-			])
-			->addTextarea('card_txt', [
-				'label' => 'Opis',
-				'rows' => 4,
-				'new_lines' => 'br',
-			])
-			->endRepeater()
-
-			->endGroup()
-
+			->addTab('Elementy', ['placement' => 'top'])
+			->addMessage('Edycja', 'Pole edytujemy klikajac w menu panelu administratora "Wezwanie do działania".')
+			
+			
 			/*--- USTAWIENIA BLOKU ---*/
 
 			->addTab('Ustawienia bloku', ['placement' => 'top'])
@@ -117,13 +98,18 @@ class Cards extends Block
 				'ui_off_text' => 'Nie',
 			]);
 
-		return $cards;
+		return $bottomBlock->build();
 	}
 
+	/**
+	 * Data to be passed to the block before rendering.
+	 *
+	 * @return array
+	 */
 	public function with()
 	{
 		return [
-			'tiles' => get_field('tiles'),
+			'bottom' => get_field('bottom', 'option'),
 			'flip' => get_field('flip'),
 			'wide' => get_field('wide'),
 			'nomt' => get_field('nomt'),

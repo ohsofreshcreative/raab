@@ -55,17 +55,21 @@ class Contact extends Block
 			->addText('mail', [
 				'label' => 'Adres e-mail',
 			])
-			->addImage('image', [
-				'label' => 'Obraz',
-				'return_format' => 'array', // lub 'url', lub 'id'
-				'preview_size' => 'medium',
+			->addTextarea('adres', [
+				'label' => 'Adres',
+				'rows' => 6,
+				'new_lines' => 'br',
+			])
+			->addTextarea('data', [
+				'label' => 'Dane spółki',
+				'rows' => 6,
+				'new_lines' => 'br',
 			])
 			->endGroup()
 			/*--- TAB #2 ---*/
 			->addTab('Formularz', ['placement' => 'top'])
 			->addGroup('g_contact_2', ['label' => ''])
 			->addText('title', ['label' => 'Tytuł'])
-			->addText('subtitle', ['label' => 'Śródtytuł'])
 			->addText('shortcode', [
 				'label' => 'Kod formularza',
 				'instructions' => 'Wklej shortcode formularza, np. [contact-form-7 id="84690e3" title="Contact form 1"]',

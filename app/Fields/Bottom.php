@@ -5,11 +5,11 @@ namespace App\Fields;
 use Log1x\AcfComposer\Field;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
-class Form extends Field
+class Bottom extends Field
 {
-	public $name = 'Formularz oraz zdjęcie';
-	public $description = 'Form';
-	public $slug = 'forms';
+	public $name = 'Wezwanie do działania';
+	public $description = 'Bottom';
+	public $slug = 'bottom';
 	public $category = 'formatting';
 	public $icon = 'email';
 	public $keywords = ['formularz', 'zdjecie'];
@@ -22,25 +22,22 @@ class Form extends Field
 
 	public function fields(): array
 	{
-		$forms = new FieldsBuilder('forms');
+		$bottom = new FieldsBuilder('bottom');
 
-		$forms
-			->setLocation('options_page', '==', 'forms') // ważne!
+		$bottom
+			->setLocation('options_page', '==', 'bottom') // ważne!
 			/*--- FIELDS ---*/
 			->addTab('Treść', ['placement' => 'top'])
-			->addGroup('forms', ['label' => ''])
+			->addGroup('bottom', ['label' => ''])
 			->addImage('image', [
 				'label' => 'Obraz',
 				'return_format' => 'array', // lub 'url', lub 'id'
 				'preview_size' => 'medium',
 			])
-			->addText('title', ['label' => 'Tytuł'])
 			->addText('subtitle', ['label' => 'Śródtytuł'])
-			->addText('shortcode', [
-				'label' => 'Kod formularza',
-				'instructions' => 'Wklej shortcode formularza, np. [contact-form-7 id="84690e3" title="Contact form 1"]',
-				'required' => 1,
-			])
+			->addText('title', ['label' => 'Tytuł'])
+			->addText('phone', ['label' => 'Telefon'])
+			->addText('mail', ['label' => 'Adres e-mail'])
 			->endGroup()
 
 			/*--- USTAWIENIA BLOKU ---*/
@@ -54,6 +51,6 @@ class Form extends Field
 			]);
 
 
-		return [$forms];
+		return [$bottom];
 	}
 }
