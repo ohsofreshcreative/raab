@@ -6,8 +6,7 @@ import './swiper.js';
 
 /*--- BLOCKS ---*/
 
-import './blocks/cases.js';
-
+Object.values(import.meta.glob('./blocks/*.js', { eager: true }));
 
 /*--- GSAP ---*/
 

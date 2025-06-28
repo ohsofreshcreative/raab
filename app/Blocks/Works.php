@@ -7,7 +7,7 @@ use StoutLogic\AcfBuilder\FieldsBuilder;
 
 class Works extends Block
 {
-	public $name = 'Realizacje - Slider';
+	public $name = 'Realizacje - Galeria';
 	public $description = 'works';
 	public $slug = 'works';
 	public $category = 'formatting';

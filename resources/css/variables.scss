@@ -241,7 +241,7 @@ body {
 }
 
 .section-light {
-  background: var(--bg-light);
+  background: var(--bg-lighter);
   padding: 120px 0;
 }
 
@@ -365,7 +365,7 @@ h6 {
 }
 
 p.big {
-  font-size: 150px;
+  font-size: 90px;
   font-weight: 600;
 }
 
@@ -722,7 +722,7 @@ h6,
   position: fixed;
   width: 100%;
   max-width: 100%;
-  z-index: 9999;
+  z-index: 49;
   transition: all 0.3s;
   transition-delay: 0s;
   background-color: var(--bg) !important;
@@ -1224,87 +1224,6 @@ input[type='checkbox'] {
   padding: 0;
   margin-top: 24px;
   border-bottom: 1px solid var(--primary) !important;
-}
-
-/*--- !FAQ ---*/
-
-.faq {
-  /*Section used for centering process*/
-  input.acc-check {
-    position: absolute !important;
-    opacity: 0 !important;
-    z-index: -1 !important;
-  }
-  .accordion-wrapper {
-    /*     padding-bottom: 15px;
-    margin-bottom: 15px; */
-  }
-  .accordion-wrapper:last-child {
-    border-bottom: none;
-  }
-  .accordion {
-    width: 100%;
-    overflow: hidden;
-    margin-bottom: 16px !important;
-  }
-  .accordion-label {
-    padding: 8px 0;
-    margin-bottom: 0px !important;
-    cursor: pointer;
-    color: var(--body);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .accordion-label:hover {
-  }
-  .accordion-label::after {
-    content: url('http://raab.local/wp-content/uploads/2025/06/plus.svg');
-    text-align: right;
-    -webkit-transition: all 0.3s;
-    transition: all 0.3s;
-    float: right;
-    transform: scale(0.9);
-    height: 24px;
-    width: 24px;
-    border-radius: 2px;
-    background-color: var(--gray);
-  }
-  .accordion-content {
-    max-height: 0;
-    -webkit-transition: all 0.3s;
-    transition: all 0.3s;
-    padding: 0 24px;
-  }
-  .accordion-content p {
-    margin: 0;
-    color: var(--body);
-    font-size: 16px;
-  }
-  .accordion-content ul {
-    list-style-type: disc;
-    padding-left: 16px;
-  }
-  input:checked {
-    border: 1px solid var(--gray);
-  }
-  input:checked + .accordion-label::after {
-    content: url('http://raab.local/wp-content/uploads/2025/06/minus.svg');
-  }
-  .accordion:has(input:checked) {
-    border: 1px solid var(--gray);
-    padding-top: 24px;
-    padding-bottom: 24px;
-    background: linear-gradient(
-      180deg,
-      rgba(60, 63, 68, 0.2) 0%,
-      rgba(60, 63, 68, 0) 50%
-    );
-  }
-  input:checked ~ .accordion-content {
-    max-height: 400px;
-    padding: 8px 24px 20px 0px;
-  }
 }
 
 /*--- !OFFERS ---*/

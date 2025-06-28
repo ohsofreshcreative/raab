@@ -7,7 +7,7 @@ use StoutLogic\AcfBuilder\FieldsBuilder;
 
 class Accordion extends Block
 {
-	public $name = 'Rozwijane panele';
+	public $name = 'Oferty pracy';
 	public $description = 'accordion';
 	public $slug = 'accordion';
 	public $category = 'formatting';
@@ -41,12 +41,14 @@ class Accordion extends Block
 			->addTab('Treść', ['placement' => 'top'])
 			->addGroup('g_accordion', ['label' => ''])
 			->addText('title', ['label' => 'Tytuł'])
-			->addImage('image', [
-				'label' => 'Obraz',
-				'return_format' => 'array', // lub 'url', lub 'id'
-				'preview_size' => 'medium',
+
+			->addAccordion('accordion1', [
+				'label' => 'Nie widzisz oferty dla siebie?',
+				'open' => false,
+				'multi_expand' => true,
 			])
-			->addText('subtitle', ['label' => 'Sródtytuł'])
+			->addText('subtitle', ['label' => 'Ciemny nagłówek'])
+			->addText('header', ['label' => 'Jasny nagłówek'])
 			->addWysiwyg('content', [
 				'label' => 'Treść',
 				'tabs' => 'all', // 'visual', 'text', 'all'
