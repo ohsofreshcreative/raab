@@ -1,6 +1,8 @@
 # === Node.js & Vite ===
 node_modules/
-
+public/build/
+public/hot
+*.log
 
 *.log
 
