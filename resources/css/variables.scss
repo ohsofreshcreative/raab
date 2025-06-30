@@ -1158,9 +1158,9 @@ textarea {
   height: 120px;
 }
 
-input[type='submit'] {
+input[type="submit"] {
   font-size: 16px;
-  background: var(--primary);
+  background: var(--primary) !important;
   color: var((--body));
   padding: 15px 45px;
   display: inline-block;
@@ -1173,7 +1173,7 @@ input[type='submit'] {
   width: unset !important;
   margin-top: 24px;
 }
-input[type='submit']:hover {
+input[type="submit"]:hover {
   color: #fff;
   background: var(--p-hover);
   transition: all 0.2s ease-out;
