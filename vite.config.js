@@ -9,8 +9,7 @@ export default defineConfig({
     port: 5173,
     strictPort: true,
     cors: true,
-    origin: 'http://raab.local',
-	origin: 'http://raab.local:5173',
+    origin: 'http://raab.local:5173',
 
     hmr: {
       protocol: 'ws',
