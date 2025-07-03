@@ -1,5 +1,5 @@
 .cases-slider {
- .__arrows {
+  .__arrows {
     width: 100%;
     top: 56%;
     transform: translateY(-50%);
@@ -35,7 +35,7 @@
   .swiper-button-next {
     order: 2;
     position: absolute;
-	right: 29.6%;
+    right: 24%;
   }
   .swiper-button-prev {
     transform: scaleX(-1);
@@ -47,5 +47,17 @@
   .swiper-button-next:after,
   .swiper-button-prev:after {
     content: '';
+  }
+}
+
+/*---- LG --*/
+@media only screen and (max-width: 1024px) {
+  .cases-slider {
+    .swiper-button-prev {
+      left: -24px;
+    }
+    .swiper-button-next {
+      right: 24px;
+    }
   }
 }

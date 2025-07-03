@@ -6,7 +6,7 @@ $backgroundImage = $featured_image
 : '';
 @endphp
 
-<div class="__content -smt">
+<div class="__content">
 
 	<div id="tresc" class="__entry">
 		@php(the_content())

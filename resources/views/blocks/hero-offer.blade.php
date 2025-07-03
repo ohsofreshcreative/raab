@@ -9,11 +9,11 @@ $backgroundImage = !empty($g_herooffer['image']['url']) ? "linear-gradient(270de
 
 <!-- hero-offer -->
 
-<section data-gsap-anim="section" class="hero-offer relative {{ $sectionClass }}" style="background-image: {{ $backgroundImage }}; background-size: cover; background-position: center;">
+<section data-gsap-anim="section" class="hero-offer relative overflow-hidden {{ $sectionClass }}" style="background-image: {{ $backgroundImage }}; background-size: cover; background-position: center;">
 
 	<div class="__wrapper c-main {{ !empty($g_herooffer['image']) ? 'py-50' : '' }}">
 
-		<div class="w-2/3">
+		<div class="w-full sm:w-2/3">
 			<h1 data-gsap-element="header" class="text-white">{{ $g_herooffer['title'] }}</h1>
 			<div data-gsap-element="content" class="text-white mt-2 __content">
 				{!! $g_herooffer['content'] !!}
@@ -39,7 +39,7 @@ $backgroundImage = !empty($g_herooffer['image']['url']) ? "linear-gradient(270de
 		@endif
 
 		@if(get_field('gfx_bottom'))
-		<div class="absolute bottom-0 right-0">
+		<div class="absolute -bottom-40 md:bottom-0 -right-28 md:right-0">
 			<svg class="animated-svg" xmlns="http://www.w3.org/2000/svg" width="1026" height="802" viewBox="0 0 1026 802" fill="none">
 				<path fill-rule="evenodd" clip-rule="evenodd" d="M1026.1 801.61H0.499762L860.349 543.971L1026.1 0.500002L1026.1 801.61Z" fill="#E30613" />
 			</svg>

@@ -29,6 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
           nextEl: container.querySelector('.swiper-button-next'),
           prevEl: container.querySelector('.swiper-button-prev'),
         },
+        breakpoints: {
+          0: { slidesPerView: 1.1, spaceBetween: 20 },
+          1024: { slidesPerView: 1.3, spaceBetween: 32 },
+        },
       });
     });
   }

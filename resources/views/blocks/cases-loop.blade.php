@@ -20,35 +20,37 @@ $args = [
 $cases = new WP_Query($args);
 @endphp
 
-<section data-gsap-anim="section" @if($sectionId) id="{{ $sectionId }}" @endif class="cases-loop relative -smt {{ $block->classes }} {{ $customClass }} {{ $sectionClass }}">
+<section data-gsap-anim="section" @if($sectionId) id="{{ $sectionId }}" @endif class="cases-loop c-main relative -smt {{ $block->classes }} {{ $customClass }} {{ $sectionClass }}">
 
 	@if ($cases->have_posts())
-	<div class="__card grid grid-cols-1 lg:grid-cols-2 items-center gap-10 p-10 b-border">
+	<div class="__cards grid gap-10">
 		@while ($cases->have_posts())
 		@php $cases->the_post(); @endphp
-		<div class="__img order1">
-			@if (has_post_thumbnail())
-			<img class="object-cover w-full __img img-m" src="{{ get_the_post_thumbnail_url() }}" alt="{{ get_the_title() }}">
-			@endif
-		</div>
-
-		<div class="__content order2">
-
-			@php
-			$client_logo = get_field('client_logo');
-			@endphp
-
-			@if ($client_logo)
-			<img class="logos mb-4" src="{{ $client_logo['url'] }}" alt="{{ $client_logo['alt'] ?: 'Logo klienta' }}">
-			@endif
-
-			<h3 data-gsap-element="header" class="">{{ get_the_title() }}</h3>
-
-			<div data-gsap-element="txt" class="mt-2">
-				{{ get_the_excerpt() }}
+		<div class="__card grid grid-cols-1 lg:grid-cols-2 items-center gap-10 b-border p-10">
+			<div class="__img order1">
+				@if (has_post_thumbnail())
+				<img class="object-cover w-full __img img-m" src="{{ get_the_post_thumbnail_url() }}" alt="{{ get_the_title() }}">
+				@endif
 			</div>
 
-			<a class="main-btn m-btn" href="{{ get_permalink() }}">Dowiedz się więcej</a>
+			<div class="__content order2">
+
+				@php
+				$client_logo = get_field('client_logo');
+				@endphp
+
+				@if ($client_logo)
+				<img class="logos mb-4" src="{{ $client_logo['url'] }}" alt="{{ $client_logo['alt'] ?: 'Logo klienta' }}">
+				@endif
+
+				<h3 data-gsap-element="header" class="">{{ get_the_title() }}</h3>
+
+				<div data-gsap-element="txt" class="mt-2">
+					{{ get_the_excerpt() }}
+				</div>
+
+				<a class="main-btn m-btn" href="{{ get_permalink() }}">Dowiedz się więcej</a>
+			</div>
 		</div>
 		@endwhile
 		@php wp_reset_postdata(); @endphp

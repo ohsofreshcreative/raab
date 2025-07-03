@@ -11,13 +11,14 @@ $sectionId = $block->data['id'] ?? null;
 $customClass = $block->data['className'] ?? '';
 @endphp
 
-<!-- offer-cards -->
+<!-- offer-cards-block -->
+
 <section data-gsap-anim="section" @if($sectionId) id="{{ $sectionId }}" @endif class="offer-cards -smt {{ $block->classes }} {{ $customClass }} {{ $sectionClass }}">
 	<div class="{{ $block->classes }}">
 
 		<div class="__wrapper c-main">
-			<h2 class="m-title __before">{{ $title }}</h2>
-			<div class="mb-14">{!! $content !!}</div>
+			<h2 data-gsap-element="header" class="m-title __before">{{ $title }}</h2>
+			<div data-gsap-element="txt" class="mb-14">{!! $content !!}</div>
 
 			@if(!empty($offer_cards))
 			@if($display_type === 'grid')
@@ -25,7 +26,7 @@ $customClass = $block->data['className'] ?? '';
 				@foreach($offer_cards as $card)
 				<div class="__cards">
 					<a href="{{ $card['cta']['url'] }}" target="{{ $card['cta']['target'] }}">
-						<div class="__card bg-white b-border-light">
+						<div data-gsap-element="card" class="__card bg-white b-border-light">
 
 							<div class="__content p-10">
 								@if(!empty($card['offer_title']))
@@ -57,7 +58,7 @@ $customClass = $block->data['className'] ?? '';
 		@else
 
 		<div class="swiper offer-swiper !overflow-visible">
-			<div class="__arrows absolute flex gap-4 z-10">
+			<div data-gsap-element="arrows" class="__arrows absolute flex gap-4 z-10">
 				<div class="swiper-button-prev">
 					<svg xmlns="http://www.w3.org/2000/svg" width="12" height="24" viewBox="0 0 12 24" fill="none">
 						<path fill-rule="evenodd" clip-rule="evenodd" d="M0.5 0L11.5 12.0235L0.5 24L6.26389 12.0706L0.5 0Z" fill="white" />
@@ -76,7 +77,7 @@ $customClass = $block->data['className'] ?? '';
 				@foreach($offer_cards as $card)
 				<div class="swiper-slide ab">
 					<a href="{{ $card['cta']['url'] }}" target="{{ $card['cta']['target'] }}">
-						<div class="__card bg-white b-border-light">
+						<div data-gsap-element="card" class="__card bg-white b-border-light">
 
 							<div class="__content p-10">
 								@if(!empty($card['offer_title']))
@@ -112,16 +113,3 @@ $customClass = $block->data['className'] ?? '';
 	</div>
 
 </section>
-
-
-<!-- 	<div class="swiper">
-  <div class="swiper-wrapper">
-    <div class="swiper-slide">Slide 1</div>
-    <div class="swiper-slide">Slide 2</div>
-    <div class="swiper-slide">Slide 3</div>
-  </div>
-
-  <div class="swiper-pagination"></div>
-  <div class="swiper-button-prev"></div>
-  <div class="swiper-button-next"></div>
-</div> -->

@@ -46,6 +46,11 @@
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
     padding: 0 24px;
+	strong {
+		display: block;
+		padding-top:24px;
+		padding-bottom:8px;
+	}
   }
   .accordion-content p {
     margin: 0;

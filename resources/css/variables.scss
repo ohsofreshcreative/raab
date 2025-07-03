@@ -116,10 +116,10 @@ body {
   --s-900: #07080a;
   --s-dark: #040506;
 
-  --gray: #63656A;
+  --gray: #63656a;
   --bg: #fafafa;
-  --bg-light: #F2F2F2;
-  --bg-lighter: #FFF3F3;
+  --bg-light: #f2f2f2;
+  --bg-lighter: #fff3f3;
 
   --border: var(--p-300);
   --border-light: var(--p-200);
@@ -273,7 +273,7 @@ body {
   ul li,
   a {
     color: #fff !important;
-  }	
+  }
 }
 
 .section-dark {
@@ -768,16 +768,6 @@ h6,
 
 /*--- !BLOCKS ---*/
 
-/*--- HERO OFFER ---*/
-
-.hero-offer {
-  h2 {
-	color:#FFF;
-	margin-top:-8px;
-	margin-bottom:16px;
-  }
-}
-
 /*--- HERO SECOND ---*/
 
 .hero-second {
@@ -793,120 +783,6 @@ h6,
   margin-top: -104px;
   .__img {
     max-height: 600px;
-  }
-}
-
-/*--- !TEXT IMAGE ---*/
-
-.text-image {
-  h4:not(:first-of-type) {
-    margin-top: 32px; /* Adjust the margin value as needed */
-  }
-  h5 {
-    margin-top: 32px;
-  }
-  h6 {
-	font-size:18px !important;
-    margin-top: 8px;
-    margin-bottom: 16px;
-  }
-  .__content {
-    p {
-      padding-bottom: 8px;
-    }
-    p:last-child {
-      padding-bottom: 0px;
-    }
-  }
-  b, strong {
-	margin-top:24px;
-  }
-  ul {
-    margin-top: 8px;
-    li {
-      position: relative;
-      padding-left: 1em;
-      border-bottom: 1px solid var(--border-light);
-      width: fit-content;
-      margin-bottom: 8px;
-      padding-bottom: 8px;
-    }
-    li:last-child {
-      border-bottom: 0;
-      margin-bottom: 0px;
-      padding-bottom: 0px;
-    }
-    li:before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 6px;
-      width: 7px;
-      height: 12px;
-      background-image: url('http://raab.local/wp-content/uploads/2025/06/check.svg');
-      background-size: cover;
-    }
-  }
-}
-
-/*--- !AREA ---*/
-
-.area {
-  .__col {
-    grid-template-columns: 2fr 1fr;
-  }
-  .__img img {
-    object-fit: contain;
-  }
-  ul {
-    margin-top: 24px;
-    li {
-      position: relative;
-      padding-left: 1em;
-      border-bottom: 1px solid var(--border-light);
-      width: fit-content;
-      margin-bottom: 8px;
-      padding-bottom: 8px;
-    }
-    li:last-child {
-      border-bottom: 0;
-      margin-bottom: 0px;
-      padding-bottom: 0px;
-    }
-    li:before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 6px;
-      width: 7px;
-      height: 12px;
-      background-image: url('http://raab.local/wp-content/uploads/2025/06/check.svg');
-      background-size: cover;
-    }
-  }
-}
-
-.iso {
-  img.__bg--first {
-    left: 50%;
-    top: -60px;
-  }
-  img.__bg--second {
-    left: 0%;
-    bottom: 0px;
-    mix-blend-mode: soft-light;
-    opacity: 0.5;
-  }
-}
-
-.offer-about {
-  .__img img {
-    width: 70%;
-    margin-left: auto;
-  }
-  h2 {
-    font-size: 36px !important;
-    line-height: 3rem;
   }
 }
 
@@ -1158,7 +1034,7 @@ textarea {
   height: 120px;
 }
 
-input[type="submit"] {
+input[type='submit'] {
   font-size: 16px;
   background: var(--primary) !important;
   color: var((--body));
@@ -1173,7 +1049,7 @@ input[type="submit"] {
   width: unset !important;
   margin-top: 24px;
 }
-input[type="submit"]:hover {
+input[type='submit']:hover {
   color: #fff;
   background: var(--p-hover);
   transition: all 0.2s ease-out;
@@ -1343,14 +1219,14 @@ input[type='checkbox'] {
 /*--- !BLOG ---*/
 
 .toc ul li {
-    border-left: 2px solid #ccc;
-    padding-left: 24px; 
-    margin-bottom: 16px; 
-  }
+  border-left: 2px solid #ccc;
+  padding-left: 24px;
+  margin-bottom: 16px;
+}
 
-  .toc ul li.active {
-    border-left-color: red;
-  }
+.toc ul li.active {
+  border-left-color: red;
+}
 
 /*--- !SINGLE ---*/
 
@@ -1436,6 +1312,10 @@ input[type='checkbox'] {
   .__widgets {
     grid-template-columns: repeat(4, 1fr);
 
+    ul.sub-menu {
+      display: none;
+    }
+
     @media (max-width: 1024px) {
       grid-template-columns: 1fr 1fr;
       .footer_widget.nav_menu-5 {
@@ -1453,51 +1333,6 @@ input[type='checkbox'] {
     .menu {
       line-height: 2.5rem;
     }
-  }
-}
-
-/*--- !MOBILE ---*/
-
-/*---- XXL --*/
-@media only screen and (max-width: 1200px) {
-  :root {
-  }
-}
-
-/*---- XL --*/
-@media only screen and (max-width: 1170px) {
-  :root {
-    --menu-height: 70px !important;
-  }
-}
-
-/*---- L --*/
-@media only screen and (max-width: 992px) {
-  :root {
-    --img-xxl: 520px;
-    --img-l: 320px;
-  }
-}
-
-/*---- M --*/
-@media only screen and (max-width: 768px) {
-  :root {
-    --img-xl: 424px;
-  }
-}
-
-/*---- S --*/
-@media only screen and (max-width: 576px) {
-  :root {
-    --img-m: 240px;
-    --img-l: 240px;
-  }
-}
-
-/*---- XS --*/
-@media only screen and (max-width: 430px) {
-  :root {
-    --img-xl: 320px;
   }
 }
 
@@ -1521,7 +1356,7 @@ input[type='checkbox'] {
     max-height: 500px; /* Ustaw odpowiednią wartość */
   }
   .widget-title::after {
-    content: url('/wp-content/themes/komi/assets/img/arrow-down.svg');
+    content: url('http://raab.local/wp-content/uploads/2025/07/arrow-down.svg');
     position: absolute;
     /*top: 50%;*/
     right: 10px;
@@ -1531,7 +1366,7 @@ input[type='checkbox'] {
   }
 
   .footer_widget.open .widget-title::after {
-    content: url('/wp-content/themes/komi/assets/img/arrow-down.svg');
+    content: url('http://raab.local/wp-content/uploads/2025/07/arrow-down.svg');
     position: absolute;
     /*top: 50%;*/
     right: 10px;
@@ -1549,4 +1384,101 @@ input[type='checkbox'] {
 
 [x-cloak] {
   display: none !important;
+}
+
+/*--- !MOBILE ---*/
+
+/*---- 2XL --*/
+@media only screen and (max-width: 1536px) {
+  :root {
+  }
+}
+
+/*---- XL --*/
+@media only screen and (max-width: 1280px) {
+  :root {
+    --menu-height: 70px !important;
+  }
+}
+
+/*---- LG --*/
+@media only screen and (max-width: 1024px) {
+  :root {
+    --img-xxl: 520px;
+    --img-l: 320px;
+  }
+  :root {
+    .area img {
+      --img-xl: 100%;
+    }
+  }
+  .order-flip {
+    .order1:nth-child(1) {
+      order: 1;
+    }
+
+    .order2:nth-child(2) {
+      order: 2;
+    }
+  }
+  h1,
+  .text-h1 {
+    font-size: 42px !important;
+    line-height: 3rem;
+  }
+}
+
+/*---- MD --*/
+@media only screen and (max-width: 768px) {
+  :root {
+    --img-xl: 424px;
+  }
+}
+
+/*---- SM --*/
+@media only screen and (max-width: 640px) {
+  :root {
+    --img-m: 240px;
+    --img-l: 240px;
+  }
+  h1,
+  .text-h1 {
+    font-size: 42px !important;
+    line-height: 3rem;
+  }
+
+  h2,
+  .text-h2 {
+    font-size: 36px !important;
+    line-height: 3.2rem;
+  }
+
+  h3,
+  .text-h3 {
+    font-size: 30px !important;
+    line-height: 3rem;
+  }
+
+  h4,
+  .text-h4 {
+    font-size: 24px !important;
+  }
+
+  h5,
+  .text-h5 {
+    font-size: 22px !important;
+    line-height: 2rem;
+  }
+
+  h6,
+  .text-h6 {
+    font-size: 20px !important;
+  }
+}
+
+/*---- XS --*/
+@media only screen and (max-width: 430px) {
+  :root {
+    --img-xl: 320px;
+  }
 }

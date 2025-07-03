@@ -8,7 +8,7 @@
 
 		<h6 class="entry-title text-h5 mt-6">
 			<a href="{{ get_permalink() }}">
-				{!! $title !!}
+				 {!! get_the_title() !!}
 			</a>
 		</h6>
 

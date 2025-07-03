@@ -14,9 +14,11 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 $backgroundImage = !empty($g_numbers['image']['url']) ? "linear-gradient(270deg, rgba(114, 3, 10, 0.20) 0%, rgba(114, 3, 10, 0.90) 100%), url({$g_numbers['image']['url']})" : '';
 @endphp
 
+<!--- numbers --->
+
 <section data-gsap-anim="section" class="numbers c-main !-mt-32 relative z-9 {{ $sectionClass }}" style="background-image: {{ $backgroundImage }}; background-size: cover; background-position: center;">
 
-	<div class="__wrapper px-10 py-15">
+	<div class="__wrapper px-0 sm:px-10 py-8 sm:py-15">
 		<div class="grid grid-cols-1 lg:grid-cols-[1fr_2fr] items-center gap-8">
 
 			@if (!empty($g_numbers['title']))

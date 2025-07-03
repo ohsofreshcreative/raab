@@ -14,12 +14,14 @@ $customClass = $block->data['className'] ?? '';
 
 @endphp
 
+<!-- area-block -->
+
 <section data-gsap-anim="section" @if($sectionId) id="{{ $sectionId }}" @endif class="area relative -smt {{ $block->classes }} {{ $customClass }} {{ $sectionClass }}">
 
 	<div class="__wrapper c-main relative">
 		<div class="__col grid grid-cols-1 lg:grid-cols-2 items-center gap-10">
 			@if (!empty($g_area['image']))
-			<div class="__img order1">
+			<div data-gsap-element="image" class="__img order1">
 				<img class="object-cover w-full __img img-xl" src="{{ $g_area['image']['url'] }}" alt="{{ $g_area['image']['alt'] ?? '' }}">
 			</div>
 			@endif
@@ -27,7 +29,7 @@ $customClass = $block->data['className'] ?? '';
 			<div class="__content order2">
 				<h2 data-gsap-element="header" class="">{{ $g_area['title'] }}</h2>
 
-				<div data-gsap-element="header" class="mt-2">
+				<div data-gsap-element="txt" class="mt-2">
 					{!! $g_area['content'] !!}
 				</div>
 

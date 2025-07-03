@@ -20,7 +20,7 @@ $customClass = $block->data['className'] ?? '';
 	<div class="__wrapper c-main relative">
 		<div class="__col grid grid-cols-1 lg:grid-cols-2 items-center gap-10">
 			@if (!empty($textimg['image']))
-			<div class="__img order1">
+			<div data-gsap-element="img" class="__img order1">
 				<img class="object-cover w-full __img img-xl" src="{{ $textimg['image']['url'] }}" alt="{{ $textimg['image']['alt'] ?? '' }}">
 			</div>
 			@endif
@@ -33,19 +33,19 @@ $customClass = $block->data['className'] ?? '';
 				</div>
 
 				@if (!empty($textimg['button']))
-				<a class="main-btn m-btn" href="{{ $textimg['button']['url'] }}">{{ $textimg['button']['title'] }}</a>
+				<a data-gsap-element="btn" class="main-btn m-btn" href="{{ $textimg['button']['url'] }}">{{ $textimg['button']['title'] }}</a>
 				@endif
 
 			</div>
 
 		</div>
 		@if ($bgimage)
-		<img class="__bg--first absolute" src="{{ $bgimage['url'] }}" alt="{{ $bgimage['alt'] ?? '' }}">
+		<img data-gsap-element="bg1" class="__bg--first absolute" src="{{ $bgimage['url'] }}" alt="{{ $bgimage['alt'] ?? '' }}">
 		@endif
 	</div>
 
 		@if ($bgimage2)
-		<img class="__bg--second absolute" src="{{ $bgimage2['url'] }}" alt="{{ $bgimage2['alt'] ?? '' }}">
+		<img data-gsap-element="bg2" class="__bg--second absolute" src="{{ $bgimage2['url'] }}" alt="{{ $bgimage2['alt'] ?? '' }}">
 		@endif
 
 </section>

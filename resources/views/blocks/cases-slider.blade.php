@@ -34,10 +34,12 @@ $background_image_url = $background_field['url'];
 // }
 @endphp
 
+<!-- cases-slider -->
+
 <section data-gsap-anim="section" @if($sectionId) id="{{ $sectionId }}" @endif class="cases-slider c-main relative -smt {{ $block->classes }} {{ $customClass }} {{ $sectionClass }}">
 
 	@if ($title)
-	<h2 class="__before">{{ $title }}</h2>
+	<h2 data-gsap-element="header" class="__before">{{ $title }}</h2>
 	@endif
 
 	@if ($cases->have_posts())
@@ -45,7 +47,7 @@ $background_image_url = $background_field['url'];
 	<div class="swipers cases-swiper !overflow-visible mt-10">
 
 		{{-- Strzałki nawigacji --}}
-		<div class="__arrows absolute flex gap-4 z-10">
+		<div data-gsap-element="arrows" class="__arrows absolute flex gap-4 z-10">
 			<div class="swiper-button-prev">
 				<svg xmlns="http://www.w3.org/2000/svg" width="12" height="24" viewBox="0 0 12 24" fill="none">
 					<path fill-rule="evenodd" clip-rule="evenodd" d="M0.5 0L11.5 12.0235L0.5 24L6.26389 12.0706L0.5 0Z" fill="white" />
@@ -65,12 +67,12 @@ $background_image_url = $background_field['url'];
 			@while ($cases->have_posts()) @php $cases->the_post(); @endphp
 			{{-- Pojedynczy slajd --}}
 			<div class="swiper-slide">
-				<div class="__card p-26 pb-0 b-border" style="background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.90) 0%, rgba(0, 0, 0, 0.4) 100%), url('{{ get_the_post_thumbnail_url(get_the_ID(), 'large') }}'); background-size: cover; background-position: center;">
+				<div data-gsap-element="card" class="__card p-14 lg:p-26 pb-0 b-border" style="background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.90) 0%, rgba(0, 0, 0, 0.4) 100%), url('{{ get_the_post_thumbnail_url(get_the_ID(), 'large') }}'); background-size: cover; background-position: center;">
 
 					<div class="__content order-1 lg:order-2 mt-40 -mb-6">
-						<h4 data-gsap-element="header" class="text-white">{{ get_the_title() }}</h4>
+						<h4 class="text-white">{{ get_the_title() }}</h4>
 
-						<div data-gsap-element="txt" class="text-white mt-2">
+						<div class="text-white mt-2">
 							{{ get_the_excerpt() }}
 						</div>
 

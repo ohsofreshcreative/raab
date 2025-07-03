@@ -8,11 +8,13 @@ $sectionClass .= $whitebg ? ' section-white' : '';
 $sectionClass .= $nomt ? ' !mt-0' : '';
 @endphp
 
+<!--- text-tiles --->
+
 <section data-gsap-anim="section" class="text-tiles -smt {{ $sectionClass }}">
 	<div class="__wrapper c-main">
 		<div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
 
-			<div class="__content sticky top-8 h-max">
+			<div class="__content relative lg:sticky top-8 h-max">
 				@if (!empty($g_tiles['title']))
 				<h2 data-gsap-element="header" class="__before">{{ strip_tags($g_tiles['title']) }}</h2>
 				@endif
@@ -28,7 +30,7 @@ $sectionClass .= $nomt ? ' !mt-0' : '';
 				@if (!empty($g_tiles['button']))
 				<a data-gsap-element="button" class="main-btn m-btn" href="{{ $g_tiles['button']['url'] }}">{{ $g_tiles['button']['title'] }}</a>
 
-				<svg data-gsap-element="pattern" class="mt-10" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="601" height="245" viewBox="0 0 601 245" fill="none">
+				<svg data-gsap-element="pattern" class="mt-10 hidden lg:block" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="601" height="245" viewBox="0 0 601 245" fill="none">
 					<rect opacity="0.2" width="601" height="245" fill="url(#pattern0_39401_1332)" />
 					<defs>
 						<pattern id="pattern0_39401_1332" patternUnits="userSpaceOnUse" viewBox="5633 -825 78.4 78.4" width="3.9134777691122329%" height="9.6000005683120495%" x="298.1" y="120.1" patternContentUnits="objectBoundingBox">
