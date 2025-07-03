@@ -31,7 +31,7 @@ $backgroundImage = !empty($g_herooffer['image']['url']) ? "linear-gradient(270de
 		</div>
 
 		@if(get_field('gfx_top'))
-		<div class="absolute top-0 left-0 -ml-1">
+		<div class="absolute top-0 left-0 -ml-1 pointer-events-none">
 			<svg class="animated-svg" xmlns="http://www.w3.org/2000/svg" width="271" height="265" viewBox="0 0 271 265">
 				<path fill-rule="evenodd" clip-rule="evenodd" d="M0.485036 0.184698H270.5L62.2153 62.5939L0.485036 265V0.184698Z" fill="#E30613" />
 			</svg>
@@ -39,7 +39,7 @@ $backgroundImage = !empty($g_herooffer['image']['url']) ? "linear-gradient(270de
 		@endif
 
 		@if(get_field('gfx_bottom'))
-		<div class="absolute -bottom-40 md:bottom-0 -right-28 md:right-0">
+		<div class="absolute -bottom-40 md:bottom-0 -right-28 md:right-0 pointer-events-none">
 			<svg class="animated-svg" xmlns="http://www.w3.org/2000/svg" width="1026" height="802" viewBox="0 0 1026 802" fill="none">
 				<path fill-rule="evenodd" clip-rule="evenodd" d="M1026.1 801.61H0.499762L860.349 543.971L1026.1 0.500002L1026.1 801.61Z" fill="#E30613" />
 			</svg>

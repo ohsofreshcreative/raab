@@ -5,17 +5,14 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
-class Accordion extends Block
-
+class Jobs extends Block
 {
-
-
-	public $name = 'Rozwijane panele';
-	public $description = 'accordion';
-	public $slug = 'accordion';
+	public $name = 'Oferty pracy';
+	public $description = 'jobs';
+	public $slug = 'jobs';
 	public $category = 'formatting';
 	public $icon = 'feedback';
-	public $keywords = ['accordion'];
+	public $keywords = ['jobs'];
 	public $mode = 'edit'; 
 	public $supports = [
 		'align' => false,
@@ -27,34 +24,31 @@ class Accordion extends Block
 
 	public function fields()
 	{
-		$accordion = new FieldsBuilder('accordion');
+		$jobs = new FieldsBuilder('jobs');
 
-		$accordion
-			->setLocation('block', '==', 'acf/accordion') // ważne!
+		$jobs
+			->setLocation('block', '==', 'acf/jobs') // ważne!
 			->addText('block-title', [
 				'label' => 'Tytuł',
 				'required' => 0,
 			])
-
-			->addAccordion('accordion1', [
-				'label' => 'Rozwijane panele',
+			->addAccordion('jobs1', [
+				'label' => 'Oferty pracy',
 				'open' => false,
 				'multi_expand' => true,
 			])
-
 			/*--- TAB #1 ---*/
 			->addTab('Treść', ['placement' => 'top'])
-			->addGroup('g_accordion', ['label' => ''])
+			->addGroup('g_jobs', ['label' => ''])
 			->addText('title', ['label' => 'Tytuł'])
 
-			->addImage('image', [
-				'label' => 'Obraz',
-				'return_format' => 'array', // lub 'url', lub 'id'
-				'preview_size' => 'medium',
+			->addAccordion('jobs1', [
+				'label' => 'Nie widzisz oferty dla siebie?',
+				'open' => false,
+				'multi_expand' => true,
 			])
-
-			->addText('subtitle', ['label' => 'Sródtytuł'])
-
+			->addText('subtitle', ['label' => 'Ciemny nagłówek'])
+			->addText('header', ['label' => 'Jasny nagłówek'])
 			->addWysiwyg('content', [
 				'label' => 'Treść',
 				'tabs' => 'all', // 'visual', 'text', 'all'
@@ -66,7 +60,7 @@ class Accordion extends Block
 			/*--- TAB #2 ---*/
 			->addTab('Elementy', ['placement' => 'top'])
 			->addRepeater('repeater', [
-				'label' => 'accordion',
+				'label' => 'jobs',
 				'layout' => 'table', // 'row', 'block', albo 'table'
 				'min' => 1,
 				'button_label' => 'Dodaj pytanie'
@@ -83,7 +77,7 @@ class Accordion extends Block
 			->endRepeater()
 
 			/*--- USTAWIENIA BLOKU ---*/
-		
+
 			->addTab('Ustawienia bloku', ['placement' => 'top'])
 			->addTrueFalse('flip', [
 				'label' => 'Odwrotna kolejność',
@@ -91,14 +85,14 @@ class Accordion extends Block
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
 			])
-
+			
 			->addTrueFalse('darkbg', [
 				'label' => 'Ciemne tło',
 				'ui' => 1,
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
 			])
-
+			
 			->addTrueFalse('bgimage', [
 				'label' => 'Grafika w tle',
 				'ui' => 1,
@@ -106,13 +100,13 @@ class Accordion extends Block
 				'ui_off_text' => 'Nie',
 			]);
 
-		return $accordion;
+		return $jobs;
 	}
 
 	public function with()
 	{
 		return [
-			'g_accordion' => get_field('g_accordion'),
+			'g_jobs' => get_field('g_jobs'),
 			'repeater' => get_field('repeater'),
 			'flip' => get_field('flip'),
 			'darkbg' => get_field('darkbg'),

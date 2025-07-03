@@ -533,7 +533,7 @@ h6,
   font-family: var(--btns-font);
   font-size: var(--btns-fontsize);
   background: var(--primary);
-  color: var(--body);
+  color: #FFF;
   padding: var(--btns-padding);
   display: inline-block;
   transition: all 0.2s ease-out;
@@ -624,7 +624,7 @@ h6,
   font-family: var(--btns-font);
   font-size: var(--btns-fontsize);
   background: transparent;
-  color: var(--primary);
+  color: #FFF;
   padding: var(--btns-padding);
   display: inline-block;
   transition: all 0.2s ease-out;
@@ -1432,6 +1432,17 @@ input[type='checkbox'] {
 @media only screen and (max-width: 768px) {
   :root {
     --img-xl: 424px;
+  }
+  .inline-buttons {
+    display: grid;
+    gap: 24px;
+  }
+  .inline-buttons .left-btn {
+    margin-right: 0;
+  }
+  .inline-buttons a {
+    width: 100% !important;
+    text-align: center !important;
   }
 }
 
