@@ -4,7 +4,7 @@
 
 	<div class="__wrapper c-main relative z-2">
 		<h2 data-gsap-element="header" class="w-full lg:w-1/2 __before">{{ $g_jobs['title'] }}</h2>
-		<div class="grid grid-cols-1 md:grid-cols-[2.5fr_1fr] gap-20 mt-10">
+		<div class="grid grid-cols-1 lg:grid-cols-[2.5fr_1fr] gap-20 mt-10">
 			<div class="__content order2">
 				@if (!empty($g_jobs['button']))
 				<a class="main-btn m-btn" href="{{ $g_jobs['button']['url'] }}">{{ $g_jobs['button']['title'] }}</a>
