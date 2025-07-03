@@ -72,10 +72,10 @@ $customClass = $block->data['className'] ?? '';
 					</svg>
 				</div>
 			</div>
-			<div class="swiper-wrapper">
+			<div class="swiper-wrapper items-stretch">
 
 				@foreach($offer_cards as $card)
-				<div class="swiper-slide ab">
+				<div class="swiper-slide !h-auto">
 					<a href="{{ $card['cta']['url'] }}" target="{{ $card['cta']['target'] }}">
 						<div data-gsap-element="card" class="__card bg-white b-border-light">
 
