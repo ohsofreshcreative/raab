@@ -10,6 +10,8 @@ $sectionClass .= $whitebg ? ' section-white' : '';
 $sectionClass .= $brandbg ? ' section-brand' : '';
 @endphp
 
+<!--- team --->
+
 <section data-gsap-anim="section" class="cards -smt {{ $sectionClass }}">
 	<div class="__wrapper c-main">
 
@@ -20,24 +22,7 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 				</div>
 			</div>
 
-			@if (!empty($repeater))
-			@php
-			$itemCount = count($repeater);
-			$gridCols = 1; // Domyślna wartość
-
-			if ($itemCount == 2 || $itemCount == 3) {
-			$gridCols = $itemCount;
-			} elseif ($itemCount >= 4) {
-			$gridCols = 2;
-			}
-
-			$gridClass = 'grid-cols-1'; // Domyślna klasa
-			if ($gridCols > 1) {
-			$gridClass = 'grid-cols-1 lg:grid-cols-' . $gridCols;
-			}
-			@endphp
-
-			<div class="grid {{ $gridClass }} pt-14 gap-8">
+			<div class="grid grid-cols-1 md:grid-cols-3 pt-14 gap-8">
 				@foreach ($repeater as $item)
 				<div class="__card relative">
 					<img class="mb-6" src="{{ $item['card_image']['url'] }}" alt="{{ $item['card_image']['alt'] ?? '' }}" />
@@ -51,7 +36,6 @@ $sectionClass .= $brandbg ? ' section-brand' : '';
 				</div>
 				@endforeach
 			</div>
-			@endif
 
 	</div>
 
