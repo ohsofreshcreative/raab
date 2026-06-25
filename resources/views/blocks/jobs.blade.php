@@ -1,5 +1,9 @@
-@php $sectionClass = '';$sectionClass .= $flip ? ' order-flip' : '';$sectionClass .= $darkbg ? ' section-dark' : '';$sectionId = $block->data['id'] ?? null;$customClass = $block->data['className'] ?? '';@endphp
+@php $sectionClass = '';$sectionClass .= $flip ? ' order-flip' : '';$sectionClass .= $darkbg ? ' section-dark' : '';$sectionId = $block->data['id'] ?? null;$customClass = $block->data['className'] ?? '';
 
+$sectionId = $section_id ?: ($block->data['id'] ?? null);
+$customClass = $block->data['className'] ?? '';
+$customClass .= $section_class ? ' ' . $section_class : '';
+@endphp
 <section data-gsap-anim="section" @if($sectionId) id="{{ $sectionId }}" @endif class="accordion faq relative overflow-hidden -smt {{ $block->classes }} {{ $customClass }} {{ $sectionClass }}">
 
 	<div class="__wrapper c-main relative z-2">

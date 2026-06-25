@@ -19,7 +19,7 @@ class OfferCardsBlock extends Block
 	 *
 	 * @var string
 	 */
-	public $description = 'Blok wyświetlający kafelki oferty z ustawień';
+	public $description = 'Blok wyświetlający automatycznie kafelki z CPT Oferta';
 
 	/**
 	 * The block slug.
@@ -136,6 +136,12 @@ class OfferCardsBlock extends Block
 			/*--- USTAWIENIA BLOKU ---*/
 
 			->addTab('Ustawienia bloku', ['placement' => 'top'])
+			->addText('section_id', [
+				'label' => 'ID',
+			])
+			->addText('section_class', [
+				'label' => 'Dodatkowe klasy CSS',
+			])
 			
 			->addTrueFalse('nomt', [
 				'label' => 'Usunięcie marginesu górnego',
@@ -183,7 +189,7 @@ class OfferCardsBlock extends Block
 			'block_title' => get_field('block_title'),
 			'display_type' => get_field('display_type'),
 			'columns' => get_field('columns'),
-			'offer_cards' => get_field('offer-cards', 'option'),
+			'offer_cards' => $this->getOfferCardsFromCpt(),
 			'title' => get_field('title'),
 			'content' => get_field('content'),
 			'nomt' => get_field('nomt'),
@@ -191,7 +197,55 @@ class OfferCardsBlock extends Block
 			'graybg' => get_field('graybg'),
 			'whitebg' => get_field('whitebg'),
 			'brandbg' => get_field('brandbg'),
+			'section_id' => get_field('section_id'),
+			'section_class' => get_field('section_class'),
 		];
+	}
+
+	/**
+	 * Build cards data from CPT Oferta so the Blade view can keep the same structure.
+	 *
+	 * @return array<int, array<string, mixed>>
+	 */
+	protected function getOfferCardsFromCpt(): array
+	{
+		$posts = \get_posts([
+			'post_type' => 'offer',
+			'post_status' => 'publish',
+			'posts_per_page' => -1,
+			'orderby' => 'menu_order',
+			'order' => 'ASC',
+			'suppress_filters' => false,
+		]);
+
+		if (empty($posts)) {
+			return [];
+		}
+
+		$cards = [];
+
+		foreach ($posts as $post) {
+			$postId = $post->ID;
+			$excerpt = \get_the_excerpt($postId);
+
+			if (empty($excerpt)) {
+				$excerpt = \wp_trim_words(\wp_strip_all_tags($post->post_content), 24);
+			}
+
+			$thumbnailId = \get_post_thumbnail_id($postId);
+
+			$cards[] = [
+				'offer_title' => \get_the_title($postId),
+				'offer_description' => $excerpt,
+				'offer_image' => $thumbnailId ? ['ID' => $thumbnailId] : null,
+				'cta' => [
+					'url' => \get_permalink($postId),
+					'target' => '_self',
+				],
+			];
+		}
+
+		return $cards;
 	}
 
 	/**

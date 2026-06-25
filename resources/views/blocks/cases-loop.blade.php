@@ -9,8 +9,9 @@ $sectionClass .= $graybg ? ' section-gray' : '';
 $sectionClass .= $whitebg ? ' section-white' : '';
 $sectionClass .= $brandbg ? ' section-brand' : '';
 
-$sectionId = $block->data['id'] ?? null;
+$sectionId = $section_id ?: ($block->data['id'] ?? null);
 $customClass = $block->data['className'] ?? '';
+$customClass .= $section_class ? ' ' . $section_class : '';
 
 $args = [
 'post_type' => 'cases',
@@ -20,17 +21,25 @@ $args = [
 $cases = new WP_Query($args);
 @endphp
 
+<!--- cases-loop -->
+
 <section data-gsap-anim="section" @if($sectionId) id="{{ $sectionId }}" @endif class="cases-loop c-main relative -smt {{ $block->classes }} {{ $customClass }} {{ $sectionClass }}">
 
 	@if ($cases->have_posts())
 	<div class="__cards grid gap-10">
 		@while ($cases->have_posts())
 		@php $cases->the_post(); @endphp
-		<div class="__card grid grid-cols-1 lg:grid-cols-2 items-center gap-10 b-border p-10">
+		<div class="__card relative grid grid-cols-1 lg:grid-cols-2 items-center gap-10 b-border p-10">
 			<div class="__img order1">
 				@if (has_post_thumbnail())
 				<img class="object-cover w-full __img img-m" src="{{ get_the_post_thumbnail_url() }}" alt="{{ get_the_title() }}">
 				@endif
+			</div>
+
+			<div class="absolute top-0 right-0">
+				<svg xmlns="http://www.w3.org/2000/svg" width="87" height="87" viewBox="0 0 87 87" fill="none">
+					<path fill-rule="evenodd" clip-rule="evenodd" d="M86.9104 86.6418V0.431902H0.700457L66.9906 19.8442L86.9104 86.6418Z" fill="#E30613" />
+				</svg>
 			</div>
 
 			<div class="__content order2">
@@ -55,11 +64,6 @@ $cases = new WP_Query($args);
 		@endwhile
 		@php wp_reset_postdata(); @endphp
 
-		<div class="absolute top-0 right-0">
-			<svg xmlns="http://www.w3.org/2000/svg" width="87" height="87" viewBox="0 0 87 87" fill="none">
-				<path fill-rule="evenodd" clip-rule="evenodd" d="M86.9104 86.6418V0.431902H0.700457L66.9906 19.8442L86.9104 86.6418Z" fill="#E30613" />
-			</svg>
-		</div>
 	</div>
 	@else
 	<p>Brak realizacji do wyświetlenia.</p>

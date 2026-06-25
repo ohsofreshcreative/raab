@@ -9,8 +9,9 @@ $sectionClass .= $graybg ? ' section-gray' : '';
 $sectionClass .= $whitebg ? ' section-white' : '';
 $sectionClass .= $brandbg ? ' section-brand' : '';
 
-$sectionId = $block->data['id'] ?? null;
+$sectionId = $section_id ?: ($block->data['id'] ?? null);
 $customClass = $block->data['className'] ?? '';
+$customClass .= $section_class ? ' ' . $section_class : '';
 @endphp
 
 <!--- text-image -->

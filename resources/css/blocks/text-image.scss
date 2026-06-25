@@ -72,7 +72,7 @@
       top: auto;
       left: auto;
       right: -2%;
-      bottom: 50%;
+      top: -2%;
       width: 160px;
     }
   }
@@ -81,7 +81,7 @@
 @media only screen and (max-width: 800px) {
   .iso {
     & img.__bg--first {
-      bottom: 33%;
+      top: -2%;
     }
   }
 }
@@ -89,7 +89,7 @@
 @media only screen and (max-width: 600px) {
   .iso {
     & img.__bg--first {
-      bottom: -2%;
+      top: -2%;
     }
   }
 }

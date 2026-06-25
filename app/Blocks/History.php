@@ -78,6 +78,12 @@ class History extends Block
 			/*--- USTAWIENIA BLOKU ---*/
 
 			->addTab('Ustawienia bloku', ['placement' => 'top'])
+			->addText('section_id', [
+				'label' => 'ID',
+			])
+			->addText('section_class', [
+				'label' => 'Dodatkowe klasy CSS',
+			])
 			->addTrueFalse('flip', [
 				'label' => 'Odwrotna kolejność',
 				'ui' => 1,
@@ -134,6 +140,8 @@ class History extends Block
 	{
 		return [
 			'g_history' => get_field('g_history'),
+			'section_id' => get_field('section_id'),
+			'section_class' => get_field('section_class'),
 			'subtitle' => get_field('subtitle'),
 			'title' => get_field('title'),
 			'flip' => get_field('flip'),

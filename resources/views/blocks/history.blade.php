@@ -8,9 +8,15 @@ $sectionClass .= $lightbg ? ' section-light' : '';
 $sectionClass .= $graybg ? ' section-gray' : '';
 $sectionClass .= $whitebg ? ' section-white' : '';
 $sectionClass .= $brandbg ? ' section-brand' : '';
+
+$sectionId = $section_id ?: ($block->data['id'] ?? null);
+$customClass = $block->data['className'] ?? '';
+$customClass .= $section_class ? ' ' . $section_class : '';
 @endphp
 
-<section data-gsap-anim="section" class="history -smt relative {{ $sectionClass }}">
+<!--- history -->
+
+<section data-gsap-anim="section" @if($sectionId) id="{{ $sectionId }}" @endif class="history -smt relative {{ $sectionClass }}">
 	<div class="__wrapper c-main">
 		<div class="relative">
 

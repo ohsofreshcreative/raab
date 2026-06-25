@@ -7,8 +7,9 @@ $sectionClass .= $graybg ? ' section-gray' : '';
 $sectionClass .= $whitebg ? ' section-white' : '';
 $sectionClass .= $brandbg ? ' section-brand' : '';
 
-$sectionId = $block->data['id'] ?? null;
+$sectionId = $section_id ?: ($block->data['id'] ?? null);
 $customClass = $block->data['className'] ?? '';
+$customClass .= $section_class ? ' ' . $section_class : '';
 @endphp
 
 <!-- offer-cards-block -->
@@ -108,7 +109,7 @@ $customClass = $block->data['className'] ?? '';
 		</div>
 		@endif
 		@else
-		<div class="no-data">Brak danych oferty. Dodaj je w ustawieniach.</div>
+		<div class="no-data">Brak wpisow w CPT Oferta. Dodaj przynajmniej jedna oferte.</div>
 		@endif
 	</div>
 

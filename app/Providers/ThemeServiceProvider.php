@@ -33,21 +33,11 @@ class ThemeServiceProvider extends SageServiceProvider
 				'public' => true,
 				'has_archive' => false,
 				'rewrite' => ['slug' => 'oferta'],
-				'supports' => ['title', 'editor', 'thumbnail'],
+				'supports' => ['title', 'editor', 'thumbnail', 'excerpt'],
 				'show_in_rest' => true,
 				'menu_icon' => 'dashicons-list-view',
 			]);
 		});
-
-		if (function_exists('acf_add_options_page')) {
-			acf_add_options_sub_page([
-				'page_title'  => 'Kafelki oferty',
-				'menu_title'  => 'Kafelki oferty',
-				'parent_slug' => 'edit.php?post_type=offer',
-				'menu_slug'   => 'offer-cards',
-				'capability'  => 'edit_posts',
-			]);
-		};
 
 		// CUSTOM POST TYPE CASES
 		add_action('init', function () {

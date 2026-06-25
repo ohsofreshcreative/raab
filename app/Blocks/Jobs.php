@@ -79,6 +79,12 @@ class Jobs extends Block
 			/*--- USTAWIENIA BLOKU ---*/
 
 			->addTab('Ustawienia bloku', ['placement' => 'top'])
+			->addText('section_id', [
+				'label' => 'ID',
+			])
+			->addText('section_class', [
+				'label' => 'Dodatkowe klasy CSS',
+			])
 			->addTrueFalse('flip', [
 				'label' => 'Odwrotna kolejność',
 				'ui' => 1,
@@ -107,6 +113,8 @@ class Jobs extends Block
 	{
 		return [
 			'g_jobs' => get_field('g_jobs'),
+			'section_id' => get_field('section_id'),
+			'section_class' => get_field('section_class'),
 			'repeater' => get_field('repeater'),
 			'flip' => get_field('flip'),
 			'darkbg' => get_field('darkbg'),

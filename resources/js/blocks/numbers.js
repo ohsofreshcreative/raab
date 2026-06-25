@@ -1,105 +1,119 @@
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-gsap.registerPlugin(ScrollTrigger);
+const DEFAULT_DURATION = 2;
 
 /**
- * Animates a single number container with a slot machine effect.
+ * Extracts one numeric token from a string and keeps prefix/suffix.
+ * Supports formats like: 1200, 12.5, 12,5, 1200+
+ */
+function parseAnimatedNumber(rawValue) {
+  const value = String(rawValue ?? '').trim();
+  const match = value.match(/-?\d+(?:[.,]\d+)?/);
+
+  if (!match || typeof match.index === 'undefined') {
+    return null;
+  }
+
+  const numericToken = match[0];
+  const numericValue = Number.parseFloat(numericToken.replace(',', '.'));
+  if (Number.isNaN(numericValue)) {
+    return null;
+  }
+
+  const decimalPart = numericToken.split(/[.,]/)[1] ?? '';
+
+  return {
+    prefix: value.slice(0, match.index),
+    suffix: value.slice(match.index + numericToken.length),
+    numericValue,
+    decimals: decimalPart.length,
+  };
+}
+
+function formatNumber(value, decimals) {
+  if (decimals > 0) {
+    return value.toFixed(decimals).replace('.', ',');
+  }
+
+  return String(Math.round(value));
+}
+
+/**
+ * Animates a single number container with a robust count-up effect.
  * @param {HTMLElement} container The container element with a data-number attribute.
  */
 function animateNumber(container) {
-  const targetNumberStr = container.dataset.number;
-  if (typeof targetNumberStr === 'undefined') {
+  const rawValue = container.dataset.number;
+  if (typeof rawValue === 'undefined') {
     return;
   }
 
-  // --- Konfiguracja animacji (możesz tu łatwo zmieniać parametry) ---
-  const DURATION = 4; // Zwiększony czas trwania animacji w sekundach
-  const MIN_SPINS = 5; // Zwiększona minimalna liczba pełnych obrotów bębna
-
-  // Clear any previous content
-  container.innerHTML = '';
-
-  const chars = targetNumberStr.split('');
-
-  // Ustawiamy wysokość kontenera na podstawie pierwszej cyfry, aby uniknąć "skakania" layoutu
-  if (chars.length > 0) {
-    const tempSpan = document.createElement('span');
-    tempSpan.textContent = '0';
-    tempSpan.style.visibility = 'hidden';
-    container.appendChild(tempSpan);
-    const digitHeight = tempSpan.offsetHeight;
-    container.innerHTML = ''; // Czyścimy po zmierzeniu
+  const parsed = parseAnimatedNumber(rawValue);
+  if (!parsed) {
+    container.textContent = rawValue;
+    return;
   }
 
-  chars.forEach((char, index) => {
-    const targetDigit = parseInt(char, 10);
+  const state = { value: 0 };
 
-    // Jeśli znak nie jest cyfrą, po prostu go dodaj bez animacji
-    if (isNaN(targetDigit)) {
-      const staticChar = document.createElement('span');
-      staticChar.className = 'digit-static';
-      staticChar.textContent = char;
-      container.appendChild(staticChar);
-      return;
-    }
-
-    // Stwórz kontener dla pojedynczej cyfry (okno)
-    const digitContainer = document.createElement('div');
-    digitContainer.className = 'digit-container';
-    container.appendChild(digitContainer);
-
-    // Stwórz bęben z cyframi
-    const reel = document.createElement('div');
-    reel.className = 'digit-reel';
-    
-    // --- KLUCZOWA ZMIANA: Tworzymy dłuższy bęben ---
-    // Dodajemy cyfry dla obrotów (np. 0-9, 0-9, 0-9...)
-    for (let s = 0; s < MIN_SPINS; s++) {
-      for (let i = 0; i <= 9; i++) {
-        const d = document.createElement('div');
-        d.textContent = i;
-        reel.appendChild(d);
-      }
-    }
-    // Na końcu dodajemy cyfry potrzebne do wylądowania na tej właściwej
-    for (let i = 0; i <= targetDigit; i++) {
-      const d = document.createElement('div');
-      d.textContent = i;
-      reel.appendChild(d);
-    }
-
-    digitContainer.appendChild(reel);
-
-    // Pobierz wysokość pojedynczej cyfry
-    const digitHeight = reel.children[0].offsetHeight;
-
-    // Obliczamy pozycję końcową
-    const finalY = -((MIN_SPINS * 10 + targetDigit) * digitHeight);
-
-    gsap.fromTo(
-      reel,
-      { y: 0 }, // Zacznij od pozycji '0'
-      {
-        y: finalY, // Przesuń bęben na obliczoną pozycję końcową
-        duration: DURATION + index * 0.5, // Czas trwania animacji, lekko dłuższy dla kolejnych cyfr
-        delay: index * 0.2, // Małe opóźnienie startu dla kaskadowego efektu
-        ease: 'power2.inOut', // Zmieniony easing na bardziej płynny
-      }
-    );
+  gsap.to(state, {
+    value: parsed.numericValue,
+    duration: DEFAULT_DURATION,
+    ease: 'power2.out',
+    onUpdate: () => {
+      const shownValue = formatNumber(state.value, parsed.decimals);
+      container.textContent = `${parsed.prefix}${shownValue}${parsed.suffix}`;
+    },
+    onComplete: () => {
+      container.textContent = `${parsed.prefix}${formatNumber(parsed.numericValue, parsed.decimals)}${parsed.suffix}`;
+    },
   });
 }
 
-// Uruchomienie animacji po załadowaniu strony i przy scrollu
-document.addEventListener('DOMContentLoaded', function () {
+function initNumbers() {
   const numberContainers = document.querySelectorAll('.number-container');
+  if (!numberContainers.length) {
+    return;
+  }
 
-  numberContainers.forEach((container) => {
-    ScrollTrigger.create({
-      trigger: container,
-      start: 'top 85%', // Kiedy 85% elementu jest widoczne od góry
-      onEnter: () => animateNumber(container),
-      once: true, // Uruchom animację tylko raz
-    });
-  });
-});
+  // Prevent re-animation on viewport/orientation changes.
+  const animated = new WeakSet();
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
+
+          const container = entry.target;
+          if (animated.has(container)) {
+            observer.unobserve(container);
+            return;
+          }
+
+          animated.add(container);
+          animateNumber(container);
+          observer.unobserve(container);
+        });
+      },
+      {
+        threshold: 0.25,
+        rootMargin: '0px 0px -10% 0px',
+      }
+    );
+
+    numberContainers.forEach((container) => observer.observe(container));
+    return;
+  }
+
+  // Fallback for older browsers.
+  numberContainers.forEach((container) => animateNumber(container));
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initNumbers);
+} else {
+  initNumbers();
+}

@@ -173,7 +173,7 @@ add_action('widgets_init', function () {
 /*-- CAREER MODAL ---*/
 
 add_action('wp_footer', function () {
-	$cf7_shortcode = '[contact-form-7 id="e0f7075" title="Wyślij CV"]';
+	$cf7_shortcode = '[contact-form-7 id="4118cb3" title="Wyślij CV"]';
 
 	echo '
     <!-- Modal Overlay -->

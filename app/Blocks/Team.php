@@ -80,6 +80,12 @@ class Team extends Block
 			/*--- USTAWIENIA BLOKU ---*/
 
 			->addTab('Ustawienia bloku', ['placement' => 'top'])
+			->addText('section_id', [
+				'label' => 'ID',
+			])
+			->addText('section_class', [
+				'label' => 'Dodatkowe klasy CSS',
+			])
 			->addTrueFalse('flip', [
 				'label' => 'Odwrotna kolejność',
 				'ui' => 1,
@@ -136,6 +142,8 @@ class Team extends Block
 	{
 		return [
 			'g_team' => get_field('g_team'),
+			'section_id' => get_field('section_id'),
+			'section_class' => get_field('section_class'),
 			'repeater' => get_field('repeater'),
 			'flip' => get_field('flip'),
 			'wide' => get_field('wide'),

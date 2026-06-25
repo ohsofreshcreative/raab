@@ -7,7 +7,7 @@ $sectionId = $block->data['id'] ?? null;
 $customClass = $block->data['className'] ?? '';
 @endphp
 
-<section data-gsap-anim="section" @if($sectionId) id="map {{ $sectionId }}" @endif class="map -smt mb-32 {{ $block->classes }} {{ $customClass }} {{ $sectionClass }}">
+<section id="map" data-gsap-anim="section" @if($sectionId) id="map {{ $sectionId }}" @endif class="map -smt mb-32 {{ $block->classes }} {{ $customClass }} {{ $sectionClass }}">
 
 	<div class="__wrapper c-main">
 		<h2 data-gsap-element="header" class="__before mb-10">{{ $g_map['title'] }}</h2>
