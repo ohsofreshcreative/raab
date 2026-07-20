@@ -1,4 +1,4 @@
-name: Test FTP deployment
+name: Deploy production
 
 on:
   workflow_dispatch:
@@ -6,16 +6,66 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: production-deployment
+  cancel-in-progress: true
+
 jobs:
   deploy:
-    name: Test FTP connection
+    name: Build and deploy Sage 11
     runs-on: ubuntu-latest
 
     steps:
       - name: Pobierz repozytorium
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
-      - name: Test połączenia FTP
+      - name: Ustaw PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          coverage: none
+
+      - name: Zainstaluj zależności PHP
+        run: |
+          composer install \
+            --no-dev \
+            --prefer-dist \
+            --no-interaction \
+            --no-progress \
+            --optimize-autoloader
+
+      - name: Ustaw Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.19.0'
+          cache: npm
+
+      - name: Zainstaluj zależności frontendowe
+        run: npm ci
+
+      - name: Zbuduj assety
+        run: npm run build
+
+      - name: Sprawdź build
+        run: |
+          test -f vendor/autoload.php
+          test -d public/build
+
+      - name: Przygotuj katalog deploymentu
+        run: |
+          mkdir -p deploy
+
+          rsync -a ./ deploy/ \
+            --exclude='.git/' \
+            --exclude='.github/' \
+            --exclude='deploy/' \
+            --exclude='node_modules/' \
+            --exclude='.env' \
+            --exclude='.env.*' \
+            --exclude='.DS_Store' \
+            --exclude='auth.json'
+
+      - name: Wyślij motyw przez FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
           server: ${{ secrets.FTP_HOST }}
@@ -23,8 +73,8 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           port: ${{ secrets.FTP_PORT }}
           protocol: ftp
+          local-dir: ./deploy/
           server-dir: ${{ secrets.FTP_REMOTE_DIR }}
-          dry-run: true
           log-level: verbose
           exclude: |
             **/.git*
