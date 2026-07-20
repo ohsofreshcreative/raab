@@ -1,4 +1,4 @@
-name: Deploy production
+name: Test FTP deployment
 
 on:
   workflow_dispatch:
@@ -6,98 +6,28 @@ on:
 permissions:
   contents: read
 
-concurrency:
-  group: raab-karcher-production
-  cancel-in-progress: true
-
 jobs:
   deploy:
-    name: Build and deploy Sage 11
+    name: Test FTP connection
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Pobierz repozytorium
+        uses: actions/checkout@v6
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
+      - name: Test połączenia FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
-          php-version: '8.2'
-          coverage: none
-          extensions: mbstring
-
-      - name: Install PHP dependencies
-        run: |
-          composer install \
-            --no-dev \
-            --prefer-dist \
-            --no-interaction \
-            --no-progress \
-            --optimize-autoloader
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20.19.0'
-          cache: yarn
-
-      - name: Enable Corepack
-        run: corepack enable
-
-      - name: Install frontend dependencies
-        run: yarn install --immutable
-
-      - name: Build production assets
-        run: yarn build
-
-      - name: Verify build
-        run: |
-          test -f vendor/autoload.php
-          test -d public/build
-
-      - name: Prepare deployment directory
-        run: |
-          mkdir -p deploy
-
-          rsync -a ./ deploy/ \
-            --exclude='.git/' \
-            --exclude='.github/' \
-            --exclude='deploy/' \
-            --exclude='node_modules/' \
-            --exclude='.env' \
-            --exclude='.env.*' \
-            --exclude='.DS_Store' \
-            --exclude='auth.json' \
-            --exclude='npm-debug.log' \
-            --exclude='yarn-error.log'
-
-      - name: Install SFTP client
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y lftp
-
-      - name: Deploy through SFTP
-        env:
-          SFTP_HOST: ${{ secrets.SFTP_HOST }}
-          SFTP_PORT: ${{ secrets.SFTP_PORT }}
-          SFTP_USERNAME: ${{ secrets.SFTP_USERNAME }}
-          SFTP_PASSWORD: ${{ secrets.SFTP_PASSWORD }}
-          SFTP_REMOTE_DIR: ${{ secrets.SFTP_REMOTE_DIR }}
-        run: |
-          lftp -u "$SFTP_USERNAME","$SFTP_PASSWORD" \
-            -p "$SFTP_PORT" \
-            "sftp://$SFTP_HOST" <<EOF
-          set sftp:auto-confirm yes
-          set net:max-retries 2
-          set net:timeout 20
-          set net:reconnect-interval-base 5
-
-          mkdir -p "$SFTP_REMOTE_DIR"
-          mirror --reverse \
-            --verbose \
-            --parallel=4 \
-            ./deploy/ \
-            "$SFTP_REMOTE_DIR"
-
-          bye
-          EOF
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: ${{ secrets.FTP_PORT }}
+          protocol: ftp
+          server-dir: ${{ secrets.FTP_REMOTE_DIR }}
+          dry-run: true
+          log-level: verbose
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github/**
+            **/node_modules/**
