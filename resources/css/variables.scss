@@ -665,7 +665,7 @@ h6,
 }
 
 .underline-btn::after {
-  content: url('http://raab.local/wp-content/uploads/2025/06/btn-arrow.svg');
+  content: url('/wp-content/uploads/2025/06/btn-arrow.svg');
   height: 10px;
   width: 10px;
   margin-left: 8px;
@@ -677,7 +677,7 @@ h6,
 }
 
 .underline-btn:hover::after {
-  content: url('http://shadowcontrol.local/wp-content/uploads/2025/05/arrow-right.svg');
+  content: url('/wp-content/uploads/2025/05/arrow-right.svg');
   height: 10px;
   width: 10px;
   margin-left: 16px;
@@ -812,7 +812,7 @@ h6,
       top: 50%;
       width: 15px;
       height: 14px;
-      background-image: url('http://shadowcontrol.local/wp-content/uploads/2025/05/check.svg');
+      background-image: url('/wp-content/uploads/2025/05/check.svg');
       background-size: cover;
       transform: translateY(-50%);
     }
@@ -1155,14 +1155,14 @@ input[type='checkbox'] {
     display: block;
   }
   .__phone::before {
-    content: url('http://shadowcontrol.local/wp-content/uploads/2025/06/phone.svg');
+    content: url('/wp-content/uploads/2025/06/phone.svg');
     margin-right: 16px;
     position: relative;
     top: 4px;
   }
 
   .__mail::before {
-    content: url('http://shadowcontrol.local/wp-content/uploads/2025/06/mail.svg');
+    content: url('/wp-content/uploads/2025/06/mail.svg');
     margin-right: 16px;
     position: relative;
     top: 4px;
@@ -1308,14 +1308,14 @@ input[type='checkbox'] {
   }
 
   .__phone::before {
-    content: url('http://raab.local/wp-content/uploads/2025/06/phone.svg');
+    content: url('/wp-content/uploads/2025/06/phone.svg');
     margin-right: 16px;
     position: relative;
     top: 4px;
   }
 
   .__mail::before {
-    content: url('http://raab.local/wp-content/uploads/2025/06/mail.svg');
+    content: url('/wp-content/uploads/2025/06/mail.svg');
     margin-right: 16px;
     position: relative;
     top: 4px;
@@ -1376,7 +1376,7 @@ input[type='checkbox'] {
     max-height: 500px; /* Ustaw odpowiednią wartość */
   }
   .widget-title::after {
-    content: url('http://raab.local/wp-content/uploads/2025/07/arrow-down.svg');
+    content: url('/wp-content/uploads/2025/07/arrow-down.svg');
     position: absolute;
     /*top: 50%;*/
     right: 10px;
@@ -1386,7 +1386,7 @@ input[type='checkbox'] {
   }
 
   .footer_widget.open .widget-title::after {
-    content: url('http://raab.local/wp-content/uploads/2025/07/arrow-down.svg');
+    content: url('/wp-content/uploads/2025/07/arrow-down.svg');
     position: absolute;
     /*top: 50%;*/
     right: 10px;

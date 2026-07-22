@@ -27,7 +27,7 @@ $customClass = $block->data['className'] ?? '';
 				id="customPlayBtn"
 				class="absolute inset-0 flex items-center justify-center bg-black/40 hover:bg-black/60 transition"
 				aria-label="Odtwórz wideo">
-				<img src="http://shadowcontrol.local/wp-content/uploads/2025/06/play.svg" alt="Play" class="w-20 h-20">
+				<img src="/wp-content/uploads/2025/06/play.svg" alt="Play" class="w-20 h-20">
 			</button>
 		</div>
 		@endif
